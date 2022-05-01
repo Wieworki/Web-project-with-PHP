@@ -1,0 +1,24 @@
+<html>
+    <header></header>
+    <main>
+        <head>
+            <title>Login</title>
+        </head>
+        <body>
+            <h1>Login System</h1>
+            <p>Please fill the form below to let the system check your identity</p>
+            <form method="post" action="../php/ValidateUser.php">
+                <div id="divUserName">
+                    <label for="UserName">User name: </label>
+                    <input type="text" id="UserName" required>
+                </div>
+                <div id="divUserPass">
+                    <label for="UserPass">Password: </label>
+                    <input type="text" id="UserPass" required>
+                </div>
+                <input type ="submit" value="Send">
+            </form>
+        </body>
+    </main>
+
+</html>
