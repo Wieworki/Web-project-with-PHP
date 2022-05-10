@@ -1,0 +1,66 @@
+main {
+    text-align: center;
+    outline: thick double #32a1ce;
+    width: 50vw;
+    margin: auto;
+}
+
+p {
+    font-size: 3vh;
+}
+
+#titleLoginDiv {
+    outline: thick double #32a1ce;
+}
+
+#titleLogin {
+    font-size: 10vh;
+}
+
+#wrapperGrid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1vh;
+    grid-auto-rows: minmax(auto, auto);
+}
+
+#usernameLabel {
+    grid-column: 1 / 2;
+    grid-row: 1;
+    font-size: 3vh;
+}
+
+#usernameInput {
+    grid-column: 2 / 3;
+    grid-row: 1;
+}
+
+#passwordLabel {
+    grid-column: 1 / 2;
+    grid-row: 2;
+    font-size: 3vh;
+}
+
+#passwordInput {
+    grid-column: 2 / 3;
+    grid-row: 2;
+}
+
+#sendBotton {
+    grid-column: 2 / 2;
+    grid-row: 3;
+    font-size: 3vh;
+    width: fit-content;
+}
+
+#UserName {
+    width: 30vw;
+    height: 5vh;
+    font-size: 3vh;
+}
+
+#UserPass {
+    width: 30vw;
+    height: 5vh;
+    font-size: 3vh;
+}
