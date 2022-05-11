@@ -47,10 +47,22 @@ p {
 }
 
 #sendBotton {
-    grid-column: 2 / 2;
-    grid-row: 3;
+    grid-column: 3 / 3;
+    grid-row: 2;
     font-size: 3vh;
     width: fit-content;
+    margin: 0 1vw 0 1vw;
+}
+
+#errorPosition {
+    grid-column: 2 / 3;
+    grid-row: 3;
+    font-size: 3vh;
+    margin: 1vw;
+}
+
+#errorMessage{
+    font-size: 3vh;
 }
 
 #UserName {
