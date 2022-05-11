@@ -13,7 +13,7 @@
                 <h1 id="titleLogin">Login System</h1>
             </div>
                 <p>Please fill the form below to let the system check your identity</p>
-                <form method="post" action="../php/ValidateUser.php">
+                <form id ="loginForm" method="post" onsubmit="validateUser()">
                 <div id="wrapperGrid">
                     <div id="usernameLabel">
                         <label for="UserName">User name: </label>
@@ -27,7 +27,7 @@
                     <div id="passwordInput">
                         <input type="password" id="UserPass" required>
                     </div>
-                    <input type ="submit" value="Send" id="sendBotton" onclick="validateUser()">
+                    <input type ="submit" value="Send" id="sendBotton">
                     <div id="errorPosition"><span id="errorMessage"></span></div>
                 </div>
             </form>
