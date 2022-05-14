@@ -14,12 +14,13 @@
         echo("Sesion inactiva");
     }*/
 
-    //Para este caso, nos interesa simplemente que se este logueado
     session_start();                    //Iniciamos la sesion
     if (isset($_SESSION['loggedin']) && $_SESSION['loggedin'] == true) {
-        include "templates/MainPage.html";
+        //If the user already was logged
+        header("Location: ../index.php");
+        die();
     } else {
-        //Si no esta logueado el usuario, lo remitimos a la pantalla de login
-        include "templates/Login.html";
+        //If it wasn´t, we render the login forms
+        include "../templates/Login.html";
     }
 ?>
