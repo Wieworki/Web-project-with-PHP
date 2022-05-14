@@ -20,7 +20,7 @@ function validateUser(){
         success: function( result ) {
           if(result == " USER VALIDATED"){
             //Redirect to main page
-            window.location.href = '../templates/MainPage.html';
+            window.location.href = '../index.php';
           }else{
             $("#errorMessage").text("Invalid user-password");
             $( "input" ).prop( "disabled", false );
