@@ -7,7 +7,7 @@ function tableCreate() {
     userTable.style.margin = ' 5vh auto auto auto';                          //Margin auto so it is centered
 
     tableUbication.appendChild(userTable);
-    addTHead("userTable",["Nombre de usuario","Nombre","Apellido","Opciones"],"20vw");    //Table thead
+    addTHead("userTable",["Nombre de usuario","Nombre","Apellido","Email","Opciones"],"15vw");    //Table thead
     userTable.createTBody();                                                              //Table tbody
     loadUserTable();
   }
@@ -61,25 +61,53 @@ function addOptionsButtons(tableid){
     }
 }
 
-function addNewUserButton(){
+function addNewUserRow(){
   var auxTable = document.getElementById("userTable");
   var auxRow = auxTable.insertRow();                      //New row
-  var buttonCell = auxRow.insertCell();                    //New cell
 
   var buttonNew = content.document.createElement('button');         //New button
-  buttonNew.addEventListener("click", addNewUser);                  //On click function
+  buttonNew.addEventListener("click", showNewUserTable);                  //On click function
   buttonNew.innerText = "Nuevo usuario";                            //Button label
   buttonNew.id = "buttonNew";
   buttonNew.style.margin = "0.5vh 1vw 0.5vh 1vw";
+  var buttonCell = auxRow.insertCell();                    
+  buttonCell.style.textAlign = "center";
   buttonCell.appendChild(buttonNew);
 }
 
+
+function showNewUserTable(){
+  document.getElementById("newUserDiv").hidden = false;
+}
 function addNewUser(){
   alert("Nuevo usuario");
+  return;
+  $.ajax({
+    type: "POST",   
+    url: "newUser.php",
+    data: {
+      userName: "uName",
+      password: "password",
+      userFirstName: "userFirstName",
+      userLastName: "userLastName",
+      userEmail: "userEmail"  
+    },
+    success: function( result ) {
+      alert(result);
+    }
+  });    
 }
 
 function deleteUser(){
-  alert("Eliminar usuario");
+  $.ajax({
+    type: "POST",   
+    url: "seeError.php",
+    data: {
+    },
+    success: function( result ) {
+      alert(result);
+    }
+  }); 
 }
 
 function editUser(){
@@ -96,10 +124,10 @@ function loadUserTable(){
         success: function( result ) {
           var usuarios = JSON.parse(result);          //Array with users username, name and lastname
           for (let i = 0; i < usuarios.length; i++) {
-            addRow("userTable",[usuarios[i].username,usuarios[i].nombre,usuarios[i].apellido],"20vw");
+            addRow("userTable",[usuarios[i].username,usuarios[i].nombre,usuarios[i].apellido,usuarios[i].email],"15vw");
           }
           addOptionsButtons("userTable");
-          addNewUserButton();
+          addNewUserRow();
         }
       });    
 }

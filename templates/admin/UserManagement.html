@@ -19,6 +19,31 @@
             <div id="wrapperDiv">
                 <h1 id="MainTitle">Lista de usuarios</h1>
                 <div id="tableUbication"></div>
+                <div id="newUserDiv" hidden>
+                    <div id="labelUserName">
+                        <label for="userNameInput">Nombre de usuario:</label>
+                        <input type="text" name="userNameInput" id="userNameInput">
+                    </div>
+                    <div>
+                        <label for="NameInput">Nombre:</label>
+                        <input type="text" name="NameInput" id="NameInput">
+                    </div>
+                    <div>
+                        <label for="LastNameInput">Apellido:</label>
+                        <input type="text" name="LastNameInput" id="LastNameInput">
+                    </div>
+                    <div>
+                        <label for="EmailInput">Email:</label>
+                        <input type="email" name="EmailInput" id="EmailInput">
+                    </div>
+                    <div>
+                        <label for="passwordInput">Password:</label>
+                        <input type="password" name="passwordInput" id="passwordInput">
+                    </div>
+                    <div>
+                        <button onclick="addNewUser()">Crear usuario</button>
+                    </div>
+                </div>
             </div>
         </body>
         <footer>

@@ -48,3 +48,23 @@ html{
     font-weight: bold;
     color: #009879;
 }
+
+#newUserDiv{
+    border-collapse: collapse;                         /*No space between cell borders*/
+    margin: 5vh auto auto auto;
+    padding: 1vw;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 50vw;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);       /*Shadow around the table*/
+    background-color: #17c6a3;
+
+    display: grid;
+    grid-template-columns: 2;
+    grid-gap: 1vh;
+    grid-template-rows: auto;
+}
+
+#labelUserName{
+    display: none;
+}
