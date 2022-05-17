@@ -7,7 +7,7 @@
             $userPassword = $_POST['password'];
             $userFirstName = $_POST['userFirstName'];
             $userLastName = $_POST['userLastName'];
-            $userEmail = $_POST['userLastName'];
+            $userEmail = $_POST['userEmail'];
             $result = prepared_query($db, "INSERT into user (username, password, nombre, apellido, email) VALUES (?, ?, ?, ?, ?)",[$userName, $userPassword, $userFirstName,  $userLastName, $userEmail]);
             echo("User inserted");
         }

@@ -1,31 +1,21 @@
-function tableCreate() {
-    const tableUbication = document.getElementById("tableUbication");  //Recovering the ubication div
-    const userTable = document.createElement('table');                       //Creating a table
-    userTable.setAttribute("id", "userTable");
-    userTable.style.width = '80vw';                                          //Width
-    userTable.style.border = '1px solid black';                              //Border
-    userTable.style.margin = ' 5vh auto auto auto';                          //Margin auto so it is centered
-
-    tableUbication.appendChild(userTable);
-    addTHead("userTable",["Nombre de usuario","Nombre","Apellido","Email","Opciones"],"15vw");    //Table thead
+function tableCreate() {                                  
+    addTHead("userTable",["Nombre de usuario","Nombre","Apellido","Email","Opciones"]);    //Table thead
     userTable.createTBody();                                                              //Table tbody
     loadUserTable();
   }
 
-function addTHead(tableId,textarray,cellsWidth){
+function addTHead(tableId,textarray){
   var table = document.getElementById(tableId);
   var header = table.createTHead();
   var auxRow = header.insertRow(0);    
   for (let i = 0; i < textarray.length; i++) {
     var auxCell = auxRow.insertCell();                             //New cell
     auxCell.appendChild(document.createTextNode(textarray[i]));    //Cell text
-    auxCell.style.border = '1px solid black';
-    auxCell.style.textAlign = "center";
-    auxCell.style.width = cellsWidth;
+    auxCell.className  = "cellStlye";
   }
 }
 
-function addRow(tableid,textarray,cellsWidth){
+function addRow(tableid,textarray){
   //Each new row goes into tbody
     var auxTable = document.getElementById(tableid);
     var tbodyRef = auxTable.getElementsByTagName('tbody')[0];
@@ -33,9 +23,7 @@ function addRow(tableid,textarray,cellsWidth){
     for (let i = 0; i < textarray.length; i++) {
         var auxCell = auxRow.insertCell();                             //New cell
         auxCell.appendChild(document.createTextNode(textarray[i]));    //Cell text
-        auxCell.style.border = '1px solid black';
-        auxCell.style.textAlign = "center";
-        auxCell.style.width = cellsWidth;
+        auxCell.className  = "cellStlye";
     }
 }
 
@@ -77,28 +65,53 @@ function addNewUserRow(){
 
 
 function showNewUserTable(){
-  document.getElementById("newUserDiv").hidden = false;
+  document.getElementById("tableUbication").hidden = true;
+  document.getElementById("newUserUbication").hidden = false;
 }
+
+function showUserList(){
+  document.getElementById("tableUbication").hidden = false;
+  document.getElementById("newUserUbication").hidden = true;
+  emptyUserTable();
+  loadUserTable();
+}
+
+function submitNewUserAction(event){
+  event.preventDefault();
+  addNewUser();
+}
+
 function addNewUser(){
-  alert("Nuevo usuario");
-  return;
+  $( "#createNewUserSubmit" ).prop( 'disabled', true );
+  $( "#createNewUserGoBack" ).prop( 'disabled', true );
+  $("#newUserText").text("Creando usuario..");
+  //Ajax
+  var newUserName = $("#newUsernameInput").val();
+  var newPassword = $("#newPasswordInput").val();
+  var newName = $("#newNameInput").val();
+  var newLastName = $("#newLastNameInput").val();
+  var newEmail = $("#newEmailInput").val();
   $.ajax({
     type: "POST",   
     url: "newUser.php",
     data: {
-      userName: "uName",
-      password: "password",
-      userFirstName: "userFirstName",
-      userLastName: "userLastName",
-      userEmail: "userEmail"  
+      userName: newUserName,
+      password: newPassword,
+      userFirstName: newName,
+      userLastName: newLastName,
+      userEmail: newEmail  
     },
     success: function( result ) {
-      alert(result);
+      $("#newUserText").text("Usuario creado correctamente");
+      $( "#createNewUserSubmit" ).prop( 'disabled', false );
+      $( "#createNewUserGoBack" ).prop( 'disabled', false );
     }
   });    
 }
 
 function deleteUser(){
+  alert("eliminar usuario");
+  return;
   $.ajax({
     type: "POST",   
     url: "seeError.php",
@@ -114,7 +127,13 @@ function editUser(){
   alert("Editar usuario");
 }
 
+function emptyUserTable(){
+  //We remove all the rows with user data
+  $("#userTable tbody tr").remove();
+}
+
 function loadUserTable(){
+  $("#loadStatus").text("Cargando tabla");
     //We recover by a PHP the users from the database
     $.ajax({
         type: "POST",   
@@ -124,10 +143,11 @@ function loadUserTable(){
         success: function( result ) {
           var usuarios = JSON.parse(result);          //Array with users username, name and lastname
           for (let i = 0; i < usuarios.length; i++) {
-            addRow("userTable",[usuarios[i].username,usuarios[i].nombre,usuarios[i].apellido,usuarios[i].email],"15vw");
+            addRow("userTable",[usuarios[i].username,usuarios[i].nombre,usuarios[i].apellido,usuarios[i].email]);
           }
           addOptionsButtons("userTable");
           addNewUserRow();
+          $("#loadStatus").text("");
         }
       });    
 }
