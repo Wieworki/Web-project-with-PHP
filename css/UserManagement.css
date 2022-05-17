@@ -3,6 +3,10 @@ html{
     background: linear-gradient(90deg, rgba(119,67,187,1) 0%, rgba(58,151,180,1) 100%);
 }
 
+h1{
+    text-align: center;
+}
+
 #wrapperDiv{
     display: grid;
     grid-template-columns: 1;
@@ -11,9 +15,10 @@ html{
     margin: 1vw;
 }
 
-#userTable{
+.table{
     border-collapse: collapse;                         /*No space between cell borders*/
-    margin: 25px 0;
+    margin: 5vh auto auto auto;
+    width: 80vw;
     font-size: 0.9em;
     font-family: sans-serif;
     min-width: 400px;
@@ -21,50 +26,36 @@ html{
     background-color: #17c6a3;
 }
 
-#userTable thead tr {
+.table thead tr {
     background-color: #009879;
     color: #ffffff;
     text-align: left;
 }
 
-#userTable th,
-#userTable td {
+.table th,
+.table td {
     padding: 12px 15px;
 }
 
-#userTable tbody tr {
+.table tbody tr {
     border-bottom: 1px solid #dddddd;
 }
 
-#userTable tbody tr:nth-of-type(even) {
+.table tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
 }
 
-#userTable tbody tr:last-of-type {
+.table tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
 }
 
-#userTable tbody tr.active-row {
+.table tbody tr.active-row {
     font-weight: bold;
     color: #009879;
 }
 
-#newUserDiv{
-    border-collapse: collapse;                         /*No space between cell borders*/
-    margin: 5vh auto auto auto;
-    padding: 1vw;
-    font-size: 0.9em;
-    font-family: sans-serif;
-    width: 50vw;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);       /*Shadow around the table*/
-    background-color: #17c6a3;
-
-    display: grid;
-    grid-template-columns: 2;
-    grid-gap: 1vh;
-    grid-template-rows: auto;
-}
-
-#labelUserName{
-    display: none;
+.cellStlye{
+    border: 1px solid black;
+    text-align: center;
+    width: 15vw;
 }
