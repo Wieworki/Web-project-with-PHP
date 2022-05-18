@@ -1,0 +1,70 @@
+<html>
+    <header>
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <script type="text/javascript" src="../../js/admin/UserMagement.js"></script>
+        <link rel="stylesheet" type="text/css" href="../../css/NavBar.css">
+        <link rel="stylesheet" type="text/css" href="../../css/UserManagement.css">
+    </header>
+    <main>
+        <head>
+            <div id="navBarUbication"></div>
+            <title>Administración de usuarios</title>
+        </head>
+        <body>
+            <div id="wrapperDiv">
+                <h1 id="mainTitle">Lista de usuarios</h1>
+                <div id="tableUbication">
+                    <table id="userTable" class="table">
+                    </table>
+                </div>
+                <div id="newUserUbication" hidden>
+                    <form id="singleUserForm">
+                        <table id="newUserTable" class="table">
+                            <thead>
+                                <tr>
+                                    <th class="cellStlye">Nombre de usuario</th>
+                                    <th class="cellStlye" id="newPassWordColumn">Password</th>
+                                    <th class="cellStlye">Nombre</th>
+                                    <th class="cellStlye">Apellido</th>
+                                    <th class="cellStlye">Email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td class="cellStlye">
+                                        <input type="text" name="" id="newUsernameInput" required>
+                                    </td>
+                                    <td class="cellStlye" id="newPasswordCell">
+                                        <input type="password" name="" id="newPasswordInput" required>
+                                    </td>
+                                    <td class="cellStlye">
+                                        <input type="text" name="" id="newNameInput" required>
+                                    </td>
+                                    <td class="cellStlye">
+                                        <input type="text" name="" id="newLastNameInput" required>
+                                    </td>
+                                    <td class="cellStlye">
+                                        <input type="email" name="" id="newEmailInput" required>
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td style="text-align: center;">
+                                        <button id="singleUserSubmit" type="submit" style="margin: 0.5vh 1vw 0.5vh 1vw;">Crear</button>
+                                        <button id="singleUserGoBack" type="button" onclick="showUserList()" style="margin: 0.5vh 1vw 0.5vh 1vw;">Volver</button>
+                                    </td>
+                                    <td id="singleUserText">
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </form>
+                </div>
+            </div>
+        </body>
+        <footer>
+            <p id="loadStatus" style="text-align: center;"></p>
+        </footer>
+    </main>
+</html>

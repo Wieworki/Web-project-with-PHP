@@ -1,4 +1,5 @@
 <?php
+    session_start();   
     if(isset($_POST['userName']) && isset($_POST['userPass'])){
         include "conection/mysqli.php"; //Database conection
 
