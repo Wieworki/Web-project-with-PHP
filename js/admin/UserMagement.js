@@ -27,26 +27,26 @@ function addRow(tableid,textarray){
     }
 }
 
-function addOptionsButtons(tableid){
-    var auxTable = document.getElementById(tableid);
-    for (let i = 1; i < auxTable.rows.length; i++) {                //We do this for every row after the columns names
-        var buttonCell = userTable.rows[i].insertCell();            //New cell
-        buttonCell.style.width = "20vw";
-        buttonCell.style.textAlign = "center";
-        buttonCell.style.border = '1px solid black';
+function addOptionsButtons(tableid,buttonValue){
+  var auxTable = document.getElementById(tableid);
+  var buttonCell = auxTable.rows[auxTable.rows.length-1].insertCell();            //New cell
+  buttonCell.style.width = "20vw";
+  buttonCell.style.textAlign = "center";
+  buttonCell.style.border = '1px solid black';
 
-        var buttonEdit = content.document.createElement('button');  //New button
-        buttonEdit.addEventListener("click", editUser);                  //On click function
-        buttonEdit.innerText = "Editar";                            //Button label
-        buttonEdit.style.margin = "0.5vh 1vw 0.5vh 1vw";
-        buttonCell.appendChild(buttonEdit);
+  var buttonEdit = content.document.createElement('button');  //New button
+  buttonEdit.addEventListener("click", setEditUserTable);             //On click function
+  buttonEdit.innerText = "Editar";                            //Button label
+  buttonEdit.value = buttonValue;                             //User id - row position
+  buttonEdit.style.margin = "0.5vh 1vw 0.5vh 1vw";
+  buttonCell.appendChild(buttonEdit);
 
-        var buttonDelete = content.document.createElement('button');  //New button
-        buttonDelete.addEventListener("click", deleteUser);                  //On click function
-        buttonDelete.innerText = "Eliminar";                            //Button label
-        buttonDelete.style.margin = "0.5vh 1vw 0.5vh 1vw";
-        buttonCell.appendChild(buttonDelete);
-    }
+  var buttonDelete = content.document.createElement('button');
+  buttonDelete.addEventListener("click", deleteUser);
+  buttonDelete.innerText = "Eliminar";
+  buttonDelete.value = buttonValue;                                        
+  buttonDelete.style.margin = "0.5vh 1vw 0.5vh 1vw";
+  buttonCell.appendChild(buttonDelete);
 }
 
 function addNewUserRow(){
@@ -54,7 +54,7 @@ function addNewUserRow(){
   var auxRow = auxTable.insertRow();                      //New row
 
   var buttonNew = content.document.createElement('button');         //New button
-  buttonNew.addEventListener("click", showNewUserTable);                  //On click function
+  buttonNew.addEventListener("click", showNewUserTable);            //On click function
   buttonNew.innerText = "Nuevo usuario";                            //Button label
   buttonNew.id = "buttonNew";
   buttonNew.style.margin = "0.5vh 1vw 0.5vh 1vw";
@@ -63,10 +63,26 @@ function addNewUserRow(){
   buttonCell.appendChild(buttonNew);
 }
 
-
 function showNewUserTable(){
   document.getElementById("tableUbication").hidden = true;
   document.getElementById("newUserUbication").hidden = false;
+
+  //User properties
+  document.getElementById("newUsernameInput").value = "";
+  document.getElementById("newPasswordInput").value = "";
+  document.getElementById("newPasswordCell").hidden = false;
+  document.getElementById("newPassWordColumn").hidden = false;
+  document.getElementById('newPasswordInput').disabled = false;
+  document.getElementById("newNameInput").value = "";
+  document.getElementById("newLastNameInput").value = "";
+  document.getElementById("newEmailInput").value = "";
+
+  //Button text
+  document.getElementById("singleUserSubmit").innerHTML = "Crear";
+
+  //Form
+  document.getElementById("singleUserForm").setAttribute("onSubmit","submitNewUserAction(event)");
+  $("#singleUserText").text("");
 }
 
 function showUserList(){
@@ -82,9 +98,9 @@ function submitNewUserAction(event){
 }
 
 function addNewUser(){
-  $( "#createNewUserSubmit" ).prop( 'disabled', true );
-  $( "#createNewUserGoBack" ).prop( 'disabled', true );
-  $("#newUserText").text("Creando usuario..");
+  $( "#singleUserSubmit" ).prop( 'disabled', true );
+  $( "#singleUserGoBack" ).prop( 'disabled', true );
+  $("#singleUserText").text("Creando usuario..");
   //Ajax
   var newUserName = $("#newUsernameInput").val();
   var newPassword = $("#newPasswordInput").val();
@@ -102,9 +118,16 @@ function addNewUser(){
       userEmail: newEmail  
     },
     success: function( result ) {
-      $("#newUserText").text("Usuario creado correctamente");
-      $( "#createNewUserSubmit" ).prop( 'disabled', false );
-      $( "#createNewUserGoBack" ).prop( 'disabled', false );
+      if(result.includes("User inserted")){
+        $("#singleUserText").text("Usuario creado correctamente");
+        $( "#singleUserSubmit" ).prop( 'disabled', false );
+        $( "#singleUserGoBack" ).prop( 'disabled', false );
+      }else{
+        $("#singleUserText").text("Hubo un problema en la acción");
+        $( "#singleUserSubmit" ).prop( 'disabled', false );
+        $( "#singleUserGoBack" ).prop( 'disabled', false );        
+      }
+
     }
   });    
 }
@@ -123,8 +146,71 @@ function deleteUser(){
   }); 
 }
 
-function editUser(){
-  alert("Editar usuario");
+function editUser(event){
+  event.preventDefault();
+  $( "#singleUserSubmit" ).prop( 'disabled', true );
+  $( "#singleUserGoBack" ).prop( 'disabled', true );
+  $("#singleUserText").text("Guardando cambios..");
+  var editID = document.getElementById("singleUserSubmit").value;
+  var editUsername = document.getElementById("newUsernameInput").value;
+  var editName = document.getElementById("newNameInput").value;
+  var editLastName = document.getElementById("newLastNameInput").value;
+  var editEmail = document.getElementById("newEmailInput").value;
+  
+  $.ajax({
+    type: "POST",   
+    url: "editUser.php",
+    data: {
+      id: editID,
+      userName: editUsername,
+      userFirstName: editName,
+      userLastName: editLastName,
+      userEmail: editEmail  
+    },
+    success: function( result ) {
+      if(result.includes("User updated")){
+        $("#singleUserText").text("Usuario editado correctamente");
+        $( "#singleUserSubmit" ).prop( 'disabled', false );
+        $( "#singleUserGoBack" ).prop( 'disabled', false );
+      }else{
+        alert(result);
+        $("#singleUserText").text("Hubo un problema en la acción");
+        $( "#singleUserSubmit" ).prop( 'disabled', false );
+        $( "#singleUserGoBack" ).prop( 'disabled', false );
+      }
+    }
+  });  
+}
+
+function setEditUserTable(){
+  var auxData = $(this).attr("value").split("-");
+  var userId = auxData[0];                        //ID of user to edit
+  var userRow = auxData[1];
+  var tableId = document.getElementById('userTable');
+  var auxUsername = tableId.tBodies[0].rows[userRow].cells[0].innerHTML;
+  var auxName = tableId.tBodies[0].rows[userRow].cells[1].innerHTML;
+  var auxLastName = tableId.tBodies[0].rows[userRow].cells[2].innerHTML;
+  var auxEmail = tableId.tBodies[0].rows[userRow].cells[3].innerHTML;
+
+  document.getElementById("tableUbication").hidden = true;
+  document.getElementById("newUserUbication").hidden = false;
+
+  //User properties
+  document.getElementById("newUsernameInput").value = auxUsername;
+  document.getElementById("newPasswordCell").hidden = true;
+  document.getElementById("newPassWordColumn").hidden = true;
+  document.getElementById('newPasswordInput').disabled = true;
+  document.getElementById("newNameInput").value = auxName;
+  document.getElementById("newLastNameInput").value = auxLastName;
+  document.getElementById("newEmailInput").value = auxEmail;
+
+  //Button
+  document.getElementById("singleUserSubmit").innerHTML = "Editar";
+  document.getElementById("singleUserSubmit").value = userId;
+
+  //Form
+  document.getElementById("singleUserForm").setAttribute("onSubmit","editUser(event)");
+  $("#singleUserText").text("");
 }
 
 function emptyUserTable(){
@@ -144,8 +230,8 @@ function loadUserTable(){
           var usuarios = JSON.parse(result);          //Array with users username, name and lastname
           for (let i = 0; i < usuarios.length; i++) {
             addRow("userTable",[usuarios[i].username,usuarios[i].nombre,usuarios[i].apellido,usuarios[i].email]);
+            addOptionsButtons("userTable",usuarios[i].id + "-" + String(i));          //We send the user id, and the row position for this user
           }
-          addOptionsButtons("userTable");
           addNewUserRow();
           $("#loadStatus").text("");
         }
