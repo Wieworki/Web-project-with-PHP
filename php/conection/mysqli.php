@@ -34,7 +34,9 @@
     {
         $types = $types ?: str_repeat("s", count($params)); //Type "s" is string
         $stmt = $mysqli->prepare($sql);
-        $stmt->bind_param($types, ...$params);  //First tell the type of the params, after that tell the params
+        if(!empty($params)){                        //If we recieve params, we bind them
+            $stmt->bind_param($types, ...$params);  //First tell the type of the params, after that tell the params
+        }
         $stmt->execute();
         return $stmt;
     }

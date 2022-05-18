@@ -18,7 +18,7 @@ function validateUser(){
           userPass: uPass
         },
         success: function( result ) {
-          if(result == " USER VALIDATED"){
+          if(result.includes("USER VALIDATED")){
             //Redirect to main page
             window.location.href = '../index.php';
           }else{

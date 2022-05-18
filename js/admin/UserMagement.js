@@ -227,6 +227,7 @@ function loadUserTable(){
         data: {
         },
         success: function( result ) {
+          $("#loadStatus").text("");
           var usuarios = JSON.parse(result);          //Array with users username, name and lastname
           for (let i = 0; i < usuarios.length; i++) {
             addRow("userTable",[usuarios[i].username,usuarios[i].nombre,usuarios[i].apellido,usuarios[i].email]);
@@ -234,6 +235,10 @@ function loadUserTable(){
           }
           addNewUserRow();
           $("#loadStatus").text("");
+        },
+        error: function (xhr, ajaxOptions, thrownError) {
+          alert(xhr.status);
+          alert(thrownError);
         }
       });    
 }
