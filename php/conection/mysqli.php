@@ -17,8 +17,8 @@
     var_dump(function_exists('mysqli_connect'));
     *////////
     include "db_credentials.php"; //Database credentials
-    global $errorNumber;
-    global $errorMessage;
+    $errorNumber = 0;
+    $errorMessage = "";
 
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);  //Shows detailed errors
     try {
@@ -34,6 +34,7 @@
 
     function prepared_query($mysqli, $sql, $params, $types = "")
     {
+        global $errorMessage;                               //Global so we can recover the value later
         $types = $types ?: str_repeat("s", count($params)); //Type "s" is string
 
         try{
@@ -70,10 +71,10 @@
     function errorHandler($errorNumber,&$errorMessage){
         switch($errorNumber){
             case "1062":
-                $errorMessage = "Entrada duplicada";
+                $errorMessage = "duplicated entry";
                 break;
             case "1064":
-                $errorMessage = "Error de sintaxis en el query";
+                $errorMessage = "syntax error";
                 break;                    
             default:
                 $errorMessage = "error code: ".$e->getCode();

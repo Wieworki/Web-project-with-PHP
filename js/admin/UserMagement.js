@@ -1,7 +1,7 @@
 function tableCreate() {                                  
     addTHead("userTable",["Nombre de usuario","Nombre","Apellido","Email","Opciones"]);    //Table thead
     userTable.createTBody();                                                              //Table tbody
-    loadUserTable();
+    loadUserTable(false);
   }
 
 function addTHead(tableId,textarray){
@@ -58,12 +58,15 @@ function addNewUserRow(){
   buttonNew.innerText = "Nuevo usuario";                            //Button label
   buttonNew.id = "buttonNew";
   buttonNew.style.margin = "0.5vh 1vw 0.5vh 1vw";
+
   var buttonCell = auxRow.insertCell();                    
   buttonCell.style.textAlign = "center";
   buttonCell.appendChild(buttonNew);
+
 }
 
 function showNewUserTable(){
+  $("#loadStatus").text("");
   document.getElementById("tableUbication").hidden = true;
   document.getElementById("newUserUbication").hidden = false;
 
@@ -89,7 +92,7 @@ function showUserList(){
   document.getElementById("tableUbication").hidden = false;
   document.getElementById("newUserUbication").hidden = true;
   emptyUserTable();
-  loadUserTable();
+  loadUserTable(false);
 }
 
 function submitNewUserAction(event){
@@ -138,29 +141,31 @@ function addNewUser(){
 }
 
 function deleteUser(){
-  var auxData = $(this).attr("value").split("-");
-  var deleteId = auxData[0];                        //ID of user to edit
-  alert("eliminar usuario id: " + deleteId);
-  return;
-  $.ajax({
-    type: "POST",   
-    url: "deleteUser.php",
-    data: {
-      id: deleteId
-    },
-    success: function( result ) {
-      if(result.includes("User eliminated")){
-        $("#singleUserText").text("Usuario editado correctamente");
-        $( "#singleUserSubmit" ).prop( 'disabled', false );
-        $( "#singleUserGoBack" ).prop( 'disabled', false );
-      }else{
-        alert(result);
-        $("#singleUserText").text("Hubo un problema en la acción");
-        $( "#singleUserSubmit" ).prop( 'disabled', false );
-        $( "#singleUserGoBack" ).prop( 'disabled', false );
+  var auxDeletion = confirm("Está seguro que desea eliminar el usuario?");
+  if(auxDeletion){
+    $("#loadStatus").text("Cargando...");
+    $(':button').prop('disabled', true);              //Disable all the buttons
+    var auxData = $(this).attr("value").split("-");
+    var deleteId = auxData[0];                        //ID of user to edit
+    $.ajax({
+      type: "POST",   
+      url: "deleteUser.php",
+      data: {
+        id: deleteId
+      },
+      success: function( result ) {
+        if(result.includes("User deleted")){
+          $(':button').prop('disabled', false); // Enable all the button
+          emptyUserTable();
+          loadUserTable(true);
+          $("#loadStatus").text("Usuario eliminado correctamente");
+        }else{
+          alert("Hubo un problema en la acción");
+          $(':button').prop('disabled', false); // Enable all the button
+        }
       }
-    }
-  });  
+    });  
+  }
 }
 
 function editUser(event){
@@ -185,7 +190,6 @@ function editUser(event){
       userEmail: editEmail  
     },
     success: function( result ) {
-      alert(result);
       if(result.includes("User updated")){
         $("#singleUserText").text("Usuario editado correctamente");
         $( "#singleUserSubmit" ).prop( 'disabled', false );
@@ -206,6 +210,7 @@ function editUser(event){
 }
 
 function setEditUserTable(){
+  $("#loadStatus").text("");
   var auxData = $(this).attr("value").split("-");
   var userId = auxData[0];                        //ID of user to edit
   var userRow = auxData[1];
@@ -241,8 +246,8 @@ function emptyUserTable(){
   $("#userTable tbody tr").remove();
 }
 
-function loadUserTable(){
-  $("#loadStatus").text("Cargando tabla");
+function loadUserTable(afterDelete){
+    $("#loadStatus").text("Cargando tabla");
     //We recover by a PHP the users from the database
     $.ajax({
         type: "POST",   
@@ -256,7 +261,11 @@ function loadUserTable(){
             if(result.includes("Error")){
               $("#loadStatus").text("Error en la búsqueda");
             }else{
-              $("#loadStatus").text("");
+              if(afterDelete){
+                $("#loadStatus").text("Usuario eliminado correctamente");
+              }else{
+                $("#loadStatus").text("");
+              }
               var usuarios = JSON.parse(result);          //Array with users username, name and lastname
               for (let i = 0; i < usuarios.length; i++) {
                 addRow("userTable",[usuarios[i].username,usuarios[i].nombre,usuarios[i].apellido,usuarios[i].email]);
