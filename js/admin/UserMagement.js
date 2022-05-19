@@ -123,27 +123,44 @@ function addNewUser(){
         $( "#singleUserSubmit" ).prop( 'disabled', false );
         $( "#singleUserGoBack" ).prop( 'disabled', false );
       }else{
-        $("#singleUserText").text("Hubo un problema en la acción");
-        $( "#singleUserSubmit" ).prop( 'disabled', false );
-        $( "#singleUserGoBack" ).prop( 'disabled', false );        
+        if(result.includes("Duplicated entry")){
+          $("#singleUserText").text("Datos duplicados con otro usuario");
+          $( "#singleUserSubmit" ).prop( 'disabled', false );
+          $( "#singleUserGoBack" ).prop( 'disabled', false );
+        }else{
+          $("#singleUserText").text("Hubo un problema en la acción");
+          $( "#singleUserSubmit" ).prop( 'disabled', false );
+          $( "#singleUserGoBack" ).prop( 'disabled', false );        
+        }
       }
-
     }
   });    
 }
 
 function deleteUser(){
-  alert("eliminar usuario");
+  var auxData = $(this).attr("value").split("-");
+  var deleteId = auxData[0];                        //ID of user to edit
+  alert("eliminar usuario id: " + deleteId);
   return;
   $.ajax({
     type: "POST",   
-    url: "seeError.php",
+    url: "deleteUser.php",
     data: {
+      id: deleteId
     },
     success: function( result ) {
-      alert(result);
+      if(result.includes("User eliminated")){
+        $("#singleUserText").text("Usuario editado correctamente");
+        $( "#singleUserSubmit" ).prop( 'disabled', false );
+        $( "#singleUserGoBack" ).prop( 'disabled', false );
+      }else{
+        alert(result);
+        $("#singleUserText").text("Hubo un problema en la acción");
+        $( "#singleUserSubmit" ).prop( 'disabled', false );
+        $( "#singleUserGoBack" ).prop( 'disabled', false );
+      }
     }
-  }); 
+  });  
 }
 
 function editUser(event){
@@ -168,15 +185,21 @@ function editUser(event){
       userEmail: editEmail  
     },
     success: function( result ) {
+      alert(result);
       if(result.includes("User updated")){
         $("#singleUserText").text("Usuario editado correctamente");
         $( "#singleUserSubmit" ).prop( 'disabled', false );
         $( "#singleUserGoBack" ).prop( 'disabled', false );
       }else{
-        alert(result);
-        $("#singleUserText").text("Hubo un problema en la acción");
-        $( "#singleUserSubmit" ).prop( 'disabled', false );
-        $( "#singleUserGoBack" ).prop( 'disabled', false );
+        if(result.includes("Duplicated entry")){
+          $("#singleUserText").text("Datos duplicados con otro usuario");
+          $( "#singleUserSubmit" ).prop( 'disabled', false );
+          $( "#singleUserGoBack" ).prop( 'disabled', false );
+        }else{
+          $("#singleUserText").text("Hubo un problema en la acción");
+          $( "#singleUserSubmit" ).prop( 'disabled', false );
+          $( "#singleUserGoBack" ).prop( 'disabled', false );
+        }
       }
     }
   });  
@@ -227,18 +250,24 @@ function loadUserTable(){
         data: {
         },
         success: function( result ) {
-          $("#loadStatus").text("");
-          var usuarios = JSON.parse(result);          //Array with users username, name and lastname
-          for (let i = 0; i < usuarios.length; i++) {
-            addRow("userTable",[usuarios[i].username,usuarios[i].nombre,usuarios[i].apellido,usuarios[i].email]);
-            addOptionsButtons("userTable",usuarios[i].id + "-" + String(i));          //We send the user id, and the row position for this user
+          if(result.includes("Tabla vacía")){
+            $("#loadStatus").text("Tabla sin datos");
+          }else{
+            if(result.includes("Error")){
+              $("#loadStatus").text("Error en la búsqueda");
+            }else{
+              $("#loadStatus").text("");
+              var usuarios = JSON.parse(result);          //Array with users username, name and lastname
+              for (let i = 0; i < usuarios.length; i++) {
+                addRow("userTable",[usuarios[i].username,usuarios[i].nombre,usuarios[i].apellido,usuarios[i].email]);
+                addOptionsButtons("userTable",usuarios[i].id + "-" + String(i));          //We send the user id, and the row position for this user
+              }
+              addNewUserRow();
+            }
           }
-          addNewUserRow();
-          $("#loadStatus").text("");
         },
-        error: function (xhr, ajaxOptions, thrownError) {
-          alert(xhr.status);
-          alert(thrownError);
+        error: function (result) {
+          $("#loadStatus").text("Error");
         }
       });    
 }

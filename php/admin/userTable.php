@@ -4,10 +4,18 @@
         include "../conection/mysqli.php"; //Database conection
         $result = prepared_select($db, "SELECT id, username, nombre, apellido, email FROM user",[]);
         $users = array();
-        while ($user = $result->fetch_assoc()) {
-            $users[] = $user;
+        if(empty($result)){
+            echo("Tabla vacía");
+        }else{
+            if($errorMessage == ""){                    //No errors
+                while ($user = $result->fetch_assoc()) {
+                    $users[] = $user;
+                }
+                echo json_encode($users);            
+            }else{
+                echo("Error");
+            }
         }
-        echo json_encode($users);
     }else{
         echo("Usuario invalido");
     }

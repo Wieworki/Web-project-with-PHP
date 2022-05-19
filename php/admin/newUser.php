@@ -8,8 +8,18 @@
             $userFirstName = $_POST['userFirstName'];
             $userLastName = $_POST['userLastName'];
             $userEmail = $_POST['userEmail'];
-            $result = prepared_query($db, "INSERT into user (username, password, nombre, apellido, email) VALUES (?, ?, ?, ?, ?)",[$userName, $userPassword, $userFirstName,  $userLastName, $userEmail]);
-            echo("User inserted");
+            $result = prepared_insert($db, "INSERT into user (username, password, nombre, apellido, email) VALUES (?, ?, ?, ?, ?)",[$userName, $userPassword, $userFirstName,  $userLastName, $userEmail]);
+            switch($errorMessage){
+                case "":
+                    echo("User inserted");
+                    break;
+                case "duplicated entry":
+                    echo("Duplicated entry");                   
+                    break; 
+                default:
+                    echo("Error");
+                    break;
+            }
         }
     }else{
         echo("Usuario invalido");

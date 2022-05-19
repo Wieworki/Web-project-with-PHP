@@ -8,8 +8,18 @@
             $userFirstName = $_POST['userFirstName'];
             $userLastName = $_POST['userLastName'];
             $userEmail = $_POST['userEmail'];
-            $result = prepared_query($db, "UPDATE user SET username = ?, nombre = ?, apellido = ?, email = ? WHERE id = ?",[$userName, $userFirstName,  $userLastName, $userEmail, $userID]);
-            echo("User updated");
+            prepared_query($db, "UPDATE user SET username = ?, nombre = ?, apellido = ?, email = ? WHERE id = ?",[$userName, $userFirstName,  $userLastName, $userEmail, $userID]);
+            switch($errorMessage){
+                case "":
+                    echo("User updated");
+                    break;
+                case "duplicated entry":
+                    echo("Duplicated entry");                   
+                    break; 
+                default:
+                    echo("Error");
+                    break;
+            }
         }
     }else{
         echo("Usuario invalido");
