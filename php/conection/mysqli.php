@@ -17,6 +17,8 @@
     var_dump(function_exists('mysqli_connect'));
     *////////
     include "db_credentials.php"; //Database credentials
+    $errorNumber = 0;
+    $errorMessage = "";
 
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);  //Shows detailed errors
     try {
@@ -32,15 +34,52 @@
 
     function prepared_query($mysqli, $sql, $params, $types = "")
     {
+        global $errorMessage;                               //Global so we can recover the value later
         $types = $types ?: str_repeat("s", count($params)); //Type "s" is string
-        $stmt = $mysqli->prepare($sql);
-        $stmt->bind_param($types, ...$params);  //First tell the type of the params, after that tell the params
-        $stmt->execute();
+
+        try{
+            $stmt = $mysqli->prepare($sql);
+        }
+        catch (Exception $e) {
+            $errorNumber = $e->getCode();
+            errorHandler($errorNumber, $errorMessage);
+            return $errorMessage;
+        }
+
+        if(!empty($params)){                        //If we recieve params, we bind them
+            $stmt->bind_param($types, ...$params);  //First tell the type of the params, after that tell the params
+        }
+
+        try{
+            $stmt->execute();
+        }
+        catch (Exception $e) {
+            $errorNumber = $e->getCode();
+            errorHandler($errorNumber, $errorMessage);
+            return $errorMessage;
+        }
         return $stmt;
     }
 
     function prepared_select($mysqli, $sql, $params = [], $types = "") {
-        return prepared_query($mysqli, $sql, $params, $types)->get_result();
+        $query = prepared_query($mysqli, $sql, $params, $types);
+        if($query != ""){
+            return $query->get_result();
+        }
+    }
+
+    function errorHandler($errorNumber,&$errorMessage){
+        switch($errorNumber){
+            case "1062":
+                $errorMessage = "duplicated entry";
+                break;
+            case "1064":
+                $errorMessage = "syntax error";
+                break;                    
+            default:
+                $errorMessage = "error code: ".$e->getCode();
+                break;
+        }
     }
 
     function getUserData($db, $id) {

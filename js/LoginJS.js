@@ -18,11 +18,14 @@ function validateUser(){
           userPass: uPass
         },
         success: function( result ) {
-          if(result == " USER VALIDATED"){
+          if(result.includes("USER VALIDATED")){
             //Redirect to main page
             window.location.href = '../index.php';
+          }else if(result.includes("USER NOT VALIDATED")){
+            $("#errorMessage").text("Combinación usuario-contraseña inválida");
+            $( "input" ).prop( "disabled", false );
           }else{
-            $("#errorMessage").text("Invalid user-password");
+            $("#errorMessage").text("Error en la conexión");
             $( "input" ).prop( "disabled", false );
           }
         }
