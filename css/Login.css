@@ -19,7 +19,9 @@ nav {
     background-color: #492E9B;
 }
 
-.navbar-brand:hover {
+
+
+a.navbar-brand:hover {
     color: black;
 }
 
