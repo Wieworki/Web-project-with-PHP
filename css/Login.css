@@ -5,32 +5,45 @@ html{
 body { 
     position: relative;
     top: 25vh;
-    left: 25vw;
-    right: 25vw;
+    left: 26vw;
+    right: 26vw;
     color: #212F3D;
     text-align: center;
     outline: thick double #32a1ce;
-    width: 50vw;
+    width: 48vw;
     background-color: #F5EEF8;
     box-shadow: 20px 25px 8px #425360;
-    font-size: 3vmin;
+}
+
+nav {
+    background-color: #492E9B;
+}
+
+.navbar-brand:hover {
+    color: black;
+}
+
+input, body, .btn-primary {
+    font-size: 3vmin
 }
 
 h1 {
-    font-size: 9vmin;
+    font-size: 8.5vmin;
 }
 
-input {
-    margin: 0.5vh 1vw;
-}
-
-.col-3 {
-    margin: 0px 10px;
+.row{
+    margin-top: 1vh;
 }
 
 .btn-primary {
+    margin-top: 1.5vh;
     background-color: rgba(58,151,180,1);
     border-color: rgba(119,67,187,1);
+}
+
+.dropdown-toggle{
+    position: relative;
+    background-color: #200960;
 }
 
 #errorPosition {
@@ -38,11 +51,11 @@ input {
 }
 
 #UserName {
-    width: 30vw;
+    width: 28vw;
     height: 5vh;
 }
 
 #UserPass {
-    width: 30vw;
+    width: 28vw;
     height: 5vh;
 }
