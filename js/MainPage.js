@@ -21,6 +21,7 @@ function loadCatalog() {
         type: "POST",   
         url: "php/catalogTable.php",
         data: {
+          request: true
         },
         success: function( result ) {
           if(result.includes("Tabla vacía")){
