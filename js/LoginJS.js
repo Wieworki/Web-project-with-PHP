@@ -9,7 +9,7 @@ function validateUser(){
     var uName = $("#UserName").val();
     var uPass = $("#UserPass").val();
     $( "input" ).prop( "disabled", true );    //The button is disabled while the query is being executed
-    $("#errorMessage").text("Checking credentials");
+    $("#errorMessage").text("Verificando Usuario...");
     $.ajax({
         type: "POST",   
         url: "../php/userValidation.php",
