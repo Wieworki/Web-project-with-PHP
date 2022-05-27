@@ -7,7 +7,7 @@
         include "templates/admin/MainPage.html";
         die();
     } else {
-        //If it wasn´t, we render the login forms
+        //If it wasn´t
         include "templates/MainPage.html";
         die;
     }
