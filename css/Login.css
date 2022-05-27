@@ -1,78 +1,59 @@
-main {
+html{
+    background: linear-gradient(90deg, #7743BB 0%, #3A97B4 100%);
+    background-image: url("../img/GOGOGO Manga y comics store.jpg"); /* needed a background img without the bussiness logo */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+body { 
+    position: relative;
+    top: 25vh;
+    left: 26vw;
+    right: 26vw;
+    color: #212F3D;
     text-align: center;
-    outline: thick double #32a1ce;
-    width: 50vw;
-    margin: auto;
+    outline: thick double #4C90BE;
+    width: 48vw;
+    background-color: #F5EEF8;
+    box-shadow: 20px 25px 8px rgba(0, 0, 0, 0.7);
+
 }
 
-p {
-    font-size: 3vh;
+input, body, .btn-primary {
+    font-size: 3vmin
 }
 
-#titleLoginDiv {
-    outline: thick double #32a1ce;
+h1 {
+    font-size: 8.5vmin;
 }
 
-#titleLogin {
-    font-size: 10vh;
+.row{
+    margin-top: 1vh;
 }
 
-#wrapperGrid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-gap: 1vh;
-    grid-auto-rows: minmax(auto, auto);
+.btn-primary {
+    margin-top: 1.5vh;
+    background-color: #5A348C;
+    border-color: #47296D;
 }
 
-#usernameLabel {
-    grid-column: 1 / 2;
-    grid-row: 1;
-    font-size: 3vh;
-}
-
-#usernameInput {
-    grid-column: 2 / 3;
-    grid-row: 1;
-}
-
-#passwordLabel {
-    grid-column: 1 / 2;
-    grid-row: 2;
-    font-size: 3vh;
-}
-
-#passwordInput {
-    grid-column: 2 / 3;
-    grid-row: 2;
-}
-
-#sendBotton {
-    grid-column: 3 / 3;
-    grid-row: 2;
-    font-size: 3vh;
-    width: fit-content;
-    margin: 0 1vw 0 1vw;
+.btn-primary:hover {
+    background-color: #47296D;
+    border-color: #5A348C;
 }
 
 #errorPosition {
-    grid-column: 2 / 3;
-    grid-row: 3;
-    font-size: 3vh;
     margin: 1vw;
 }
 
-#errorMessage{
-    font-size: 3vh;
-}
-
 #UserName {
-    width: 30vw;
+    width: 28vw;
     height: 5vh;
-    font-size: 3vh;
 }
 
 #UserPass {
-    width: 30vw;
+    width: 28vw;
     height: 5vh;
-    font-size: 3vh;
 }
