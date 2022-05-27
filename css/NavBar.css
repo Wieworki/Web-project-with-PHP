@@ -1,28 +1,31 @@
-/* Add a black background color to the top navigation */
-.topnav {
-    background: rgb(123, 155, 203);
-    background: linear-gradient(90deg, rgb(123, 155, 203) 0%, rgba(58,151,180,1) 65%);
-    overflow: hidden;
-    }
+   nav {
+      background: linear-gradient(90deg, #180748 0%, #603896 100%);
+   }
 
-    /* Style the links inside the navigation bar */
-    .topnav a {
-    float: left;
-    color: #f2f2f2;
-    text-align: center;
-    padding: 14px 16px;
-    text-decoration: none;
-    font-size: 17px;
-    }
+   .dropdown-toggle {
+      background-color: #200960;
+      border-color: #180748; 
+   }
 
-    /* Change the color of links on hover */
-    .topnav a:hover {
-    background-color: #ddd;
-    color: black;
-    }
+   /*.dropdown-toggle:hover {
+      background-color: #180748;
+      border-color: #200960;
+   }*/
 
-    /* Add a color to the active/current link */
-    .topnav a.active {
-    background-color: #200960;
-    color: white;
-    }
+   /*.dropdown-toggle:focus {
+      background-color: #180748;
+      border-color: #200960;
+   }*/
+
+   .dropdown-toggle: {
+      background-color: #180748;
+      border-color: #200960;
+   }
+
+   .dropdown-menu {
+      background-color: #F5EEF8;;
+   }
+
+   .dropdown-item:hover {
+      background-color: #ECE6EE;
+   }
