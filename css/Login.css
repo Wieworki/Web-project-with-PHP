@@ -1,36 +1,47 @@
 html{
-    background: linear-gradient(90deg, rgba(119,67,187,1) 0%, rgba(58,151,180,1) 100%);
+    background: linear-gradient(90deg, #7743BB 0%, #3A97B4 100%);
+    background-image: url("../img/GOGOGO Manga y comics store.jpg"); /* needed a background img without the bussiness logo */
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 body { 
     position: relative;
     top: 25vh;
-    left: 25vw;
-    right: 25vw;
+    left: 26vw;
+    right: 26vw;
     color: #212F3D;
     text-align: center;
-    outline: thick double #32a1ce;
-    width: 50vw;
+    outline: thick double #4C90BE;
+    width: 48vw;
     background-color: #F5EEF8;
-    box-shadow: 20px 25px 8px #425360;
-    font-size: 3vmin;
+    box-shadow: 20px 25px 8px rgba(0, 0, 0, 0.7);
+
+}
+
+input, body, .btn-primary {
+    font-size: 3vmin
 }
 
 h1 {
-    font-size: 9vmin;
+    font-size: 8.5vmin;
 }
 
-input {
-    margin: 0.5vh 1vw;
-}
-
-.col-3 {
-    margin: 0px 10px;
+.row{
+    margin-top: 1vh;
 }
 
 .btn-primary {
-    background-color: rgba(58,151,180,1);
-    border-color: rgba(119,67,187,1);
+    margin-top: 1.5vh;
+    background-color: #5A348C;
+    border-color: #47296D;
+}
+
+.btn-primary:hover {
+    background-color: #47296D;
+    border-color: #5A348C;
 }
 
 #errorPosition {
@@ -38,11 +49,11 @@ input {
 }
 
 #UserName {
-    width: 30vw;
+    width: 28vw;
     height: 5vh;
 }
 
 #UserPass {
-    width: 30vw;
+    width: 28vw;
     height: 5vh;
 }
