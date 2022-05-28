@@ -284,18 +284,8 @@ function loadUserTable(afterDelete){
 $(document).ready(function() {
     $(function(){
         //NavBar 
-        $( "#navBarUbication" ).load( "../../templates/navBar.html", function() {
-            //We have to change the attr of the navBar
-            document.getElementById("homeNavBar").setAttribute("href", "../../index.php");
-            document.getElementById("LogInNavBar").setAttribute("href", "../Login.php");
-            document.getElementById("LogOutNavBar").setAttribute("href", "../LogOut.php");
-
-            document.getElementById("UserManagementNavBar").hidden = false;
-            document.getElementById("LogInNavBar").hidden = true; //User is already logged in if is seeing the page
-            document.getElementById("LogOutNavBar").hidden = false;
-
-            document.getElementById("homeNavBar").className = "";
-            document.getElementById("UserManagementNavBar").className = "active";
+        $( "#navBarUbication" ).load( "/php/NavBar.php", function() {
+            //
           });
       });
       
