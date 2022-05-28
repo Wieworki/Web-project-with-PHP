@@ -1,6 +1,6 @@
 html{
     background: linear-gradient(90deg, #7743BB 0%, #3A97B4 100%);
-    background-image: url("../img/GOGOGO Manga y comics store.jpg"); /* needed a background img without the bussiness logo */
+    background-image: url("/img/GOGOGO Manga y comics store.jpg"); /* needed a background img without the bussiness logo */
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
