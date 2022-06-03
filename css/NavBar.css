@@ -7,17 +7,7 @@
       border-color: #180748; 
    }
 
-   /*.dropdown-toggle:hover {
-      background-color: #180748;
-      border-color: #200960;
-   }*/
-
-   /*.dropdown-toggle:focus {
-      background-color: #180748;
-      border-color: #200960;
-   }*/
-
-   .dropdown-toggle: {
+   .dropdown-toggle:hover {
       background-color: #180748;
       border-color: #200960;
    }
