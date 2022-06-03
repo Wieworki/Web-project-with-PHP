@@ -25,7 +25,7 @@
         <nav class="navbar navbar-dark fixed-top">
             <div class="container-fluid">
 
-                <a class="navbar-brand" href="../templates/MainPage.html">
+                <a class="navbar-brand" href="/index.php">
                     <img src="/img/gogogo manga y comics store - logo sin fondo 2.png" height="40" width="45">
                     <img src="/img/gogogo manga y comics store - logo sin fondo 3.png" width="150">
                 </a>
