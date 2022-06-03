@@ -67,6 +67,7 @@ function addNewUserRow(){
 
 function showNewUserTable(){
   $("#loadStatus").text("");
+  $("#mainTitle").text("NUEVO USUARIO");                    
   document.getElementById("tableUbication").hidden = true;
   document.getElementById("newUserUbication").hidden = false;
 
@@ -211,6 +212,7 @@ function editUser(event){
 
 function setEditUserTable(){
   $("#loadStatus").text("");
+  $("#mainTitle").text("EDITAR USUARIO");                    
   var auxData = $(this).attr("value").split("-");
   var userId = auxData[0];                        //ID of user to edit
   var userRow = auxData[1];
@@ -247,6 +249,7 @@ function emptyUserTable(){
 }
 
 function loadUserTable(afterDelete){
+    $("#mainTitle").text("LISTA DE USUARIOS");                    
     $("#loadStatus").text("Cargando tabla");
     //We recover by a PHP the users from the database
     $.ajax({
