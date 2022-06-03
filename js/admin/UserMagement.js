@@ -28,34 +28,32 @@ function addRow(tableid,textarray){
 }
 
 function addOptionsButtons(tableid,buttonValue){
-
   var auxTable = document.getElementById(tableid);
   var buttonCell = auxTable.rows[auxTable.rows.length-1].insertCell();            //New cell
   buttonCell.style.width = "20vw";
   buttonCell.style.textAlign = "center";
   buttonCell.style.border = '1px solid black';
 
-  var buttonEdit = document.createElement('button');  //New button
+  var buttonEdit = content.document.createElement('button');  //New button
   buttonEdit.addEventListener("click", setEditUserTable);             //On click function
   buttonEdit.innerText = "Editar";                            //Button label
   buttonEdit.value = buttonValue;                             //User id - row position
   buttonEdit.style.margin = "0.5vh 1vw 0.5vh 1vw";
   buttonCell.appendChild(buttonEdit);
 
-  var buttonDelete = document.createElement('button');
+  var buttonDelete = content.document.createElement('button');
   buttonDelete.addEventListener("click", deleteUser);
   buttonDelete.innerText = "Eliminar";
   buttonDelete.value = buttonValue;                                        
   buttonDelete.style.margin = "0.5vh 1vw 0.5vh 1vw";
   buttonCell.appendChild(buttonDelete);
-
 }
 
 function addNewUserRow(){
   var auxTable = document.getElementById("userTable");
   var auxRow = auxTable.insertRow();                      //New row
 
-  var buttonNew = document.createElement('button');         //New button
+  var buttonNew = content.document.createElement('button');         //New button
   buttonNew.addEventListener("click", showNewUserTable);            //On click function
   buttonNew.innerText = "Nuevo usuario";                            //Button label
   buttonNew.id = "buttonNew";
