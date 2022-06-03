@@ -5,6 +5,6 @@
         include ("/templates/admin/UserManagement.html");
     } else {
         //If the user isn´t autenticated, we send him to the login page
-        header("Location: php/Login.php");
+        header("Location: ../../php/Login.php");
     }
 ?>

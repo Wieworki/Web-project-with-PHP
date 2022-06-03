@@ -67,6 +67,7 @@ function addNewUserRow(){
 
 function showNewUserTable(){
   $("#loadStatus").text("");
+  $("#mainTitle").text("NUEVO USUARIO");                    
   document.getElementById("tableUbication").hidden = true;
   document.getElementById("newUserUbication").hidden = false;
 
@@ -85,7 +86,7 @@ function showNewUserTable(){
 
   //Form
   document.getElementById("singleUserForm").setAttribute("onSubmit","submitNewUserAction(event)");
-  $("#singleUserText").text("");
+  $("#loadStatus").text("");
 }
 
 function showUserList(){
@@ -103,7 +104,7 @@ function submitNewUserAction(event){
 function addNewUser(){
   $( "#singleUserSubmit" ).prop( 'disabled', true );
   $( "#singleUserGoBack" ).prop( 'disabled', true );
-  $("#singleUserText").text("Creando usuario..");
+  $("#loadStatus").text("Creando usuario..");
   //Ajax
   var newUserName = $("#newUsernameInput").val();
   var newPassword = $("#newPasswordInput").val();
@@ -112,7 +113,7 @@ function addNewUser(){
   var newEmail = $("#newEmailInput").val();
   $.ajax({
     type: "POST",   
-    url: "newUser.php",
+    url: "../../php/admin/newUser.php",
     data: {
       userName: newUserName,
       password: newPassword,
@@ -122,16 +123,16 @@ function addNewUser(){
     },
     success: function( result ) {
       if(result.includes("User inserted")){
-        $("#singleUserText").text("Usuario creado correctamente");
+        $("#loadStatus").text("Usuario creado correctamente");
         $( "#singleUserSubmit" ).prop( 'disabled', false );
         $( "#singleUserGoBack" ).prop( 'disabled', false );
       }else{
         if(result.includes("Duplicated entry")){
-          $("#singleUserText").text("Datos duplicados con otro usuario");
+          $("#loadStatus").text("Datos duplicados con otro usuario");
           $( "#singleUserSubmit" ).prop( 'disabled', false );
           $( "#singleUserGoBack" ).prop( 'disabled', false );
         }else{
-          $("#singleUserText").text("Hubo un problema en la acción");
+          $("#loadStatus").text("Hubo un problema en la acción");
           $( "#singleUserSubmit" ).prop( 'disabled', false );
           $( "#singleUserGoBack" ).prop( 'disabled', false );        
         }
@@ -149,7 +150,7 @@ function deleteUser(){
     var deleteId = auxData[0];                        //ID of user to edit
     $.ajax({
       type: "POST",   
-      url: "deleteUser.php",
+      url: "../../php/admin/deleteUser.php",
       data: {
         id: deleteId
       },
@@ -172,7 +173,7 @@ function editUser(event){
   event.preventDefault();
   $( "#singleUserSubmit" ).prop( 'disabled', true );
   $( "#singleUserGoBack" ).prop( 'disabled', true );
-  $("#singleUserText").text("Guardando cambios..");
+  $("#loadStatus").text("Guardando cambios..");
   var editID = document.getElementById("singleUserSubmit").value;
   var editUsername = document.getElementById("newUsernameInput").value;
   var editName = document.getElementById("newNameInput").value;
@@ -181,7 +182,7 @@ function editUser(event){
   
   $.ajax({
     type: "POST",   
-    url: "editUser.php",
+    url: "../../php/admin/editUser.php",
     data: {
       id: editID,
       userName: editUsername,
@@ -191,16 +192,16 @@ function editUser(event){
     },
     success: function( result ) {
       if(result.includes("User updated")){
-        $("#singleUserText").text("Usuario editado correctamente");
+        $("#loadStatus").text("Usuario editado correctamente");
         $( "#singleUserSubmit" ).prop( 'disabled', false );
         $( "#singleUserGoBack" ).prop( 'disabled', false );
       }else{
         if(result.includes("Duplicated entry")){
-          $("#singleUserText").text("Datos duplicados con otro usuario");
+          $("#loadStatus").text("Datos duplicados con otro usuario");
           $( "#singleUserSubmit" ).prop( 'disabled', false );
           $( "#singleUserGoBack" ).prop( 'disabled', false );
         }else{
-          $("#singleUserText").text("Hubo un problema en la acción");
+          $("#loadStatus").text("Hubo un problema en la acción");
           $( "#singleUserSubmit" ).prop( 'disabled', false );
           $( "#singleUserGoBack" ).prop( 'disabled', false );
         }
@@ -211,6 +212,7 @@ function editUser(event){
 
 function setEditUserTable(){
   $("#loadStatus").text("");
+  $("#mainTitle").text("EDITAR USUARIO");                    
   var auxData = $(this).attr("value").split("-");
   var userId = auxData[0];                        //ID of user to edit
   var userRow = auxData[1];
@@ -238,7 +240,7 @@ function setEditUserTable(){
 
   //Form
   document.getElementById("singleUserForm").setAttribute("onSubmit","editUser(event)");
-  $("#singleUserText").text("");
+  $("#loadStatus").text("");
 }
 
 function emptyUserTable(){
@@ -247,11 +249,12 @@ function emptyUserTable(){
 }
 
 function loadUserTable(afterDelete){
+    $("#mainTitle").text("LISTA DE USUARIOS");                    
     $("#loadStatus").text("Cargando tabla");
     //We recover by a PHP the users from the database
     $.ajax({
         type: "POST",   
-        url: "userTable.php",
+        url: "../../php/admin/userTable.php",
         data: {
         },
         success: function( result ) {
