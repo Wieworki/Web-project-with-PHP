@@ -34,14 +34,14 @@ function addOptionsButtons(tableid,buttonValue){
   buttonCell.style.textAlign = "center";
   buttonCell.style.border = '1px solid black';
 
-  var buttonEdit = content.document.createElement('button');  //New button
+  var buttonEdit = document.createElement('button');  //New button
   buttonEdit.addEventListener("click", setEditUserTable);             //On click function
   buttonEdit.innerText = "Editar";                            //Button label
   buttonEdit.value = buttonValue;                             //User id - row position
   buttonEdit.style.margin = "0.5vh 1vw 0.5vh 1vw";
   buttonCell.appendChild(buttonEdit);
 
-  var buttonDelete = content.document.createElement('button');
+  var buttonDelete = document.createElement('button');
   buttonDelete.addEventListener("click", deleteUser);
   buttonDelete.innerText = "Eliminar";
   buttonDelete.value = buttonValue;                                        
@@ -53,7 +53,7 @@ function addNewUserRow(){
   var auxTable = document.getElementById("userTable");
   var auxRow = auxTable.insertRow();                      //New row
 
-  var buttonNew = content.document.createElement('button');         //New button
+  var buttonNew = document.createElement('button');         //New button
   buttonNew.addEventListener("click", showNewUserTable);            //On click function
   buttonNew.innerText = "Nuevo usuario";                            //Button label
   buttonNew.id = "buttonNew";
@@ -112,7 +112,7 @@ function addNewUser(){
   var newEmail = $("#newEmailInput").val();
   $.ajax({
     type: "POST",   
-    url: "newUser.php",
+    url: "../../php/admin/newUser.php",
     data: {
       userName: newUserName,
       password: newPassword,
@@ -149,7 +149,7 @@ function deleteUser(){
     var deleteId = auxData[0];                        //ID of user to edit
     $.ajax({
       type: "POST",   
-      url: "deleteUser.php",
+      url: "../../php/admin/deleteUser.php",
       data: {
         id: deleteId
       },
@@ -181,7 +181,7 @@ function editUser(event){
   
   $.ajax({
     type: "POST",   
-    url: "editUser.php",
+    url: "../../php/admin/editUser.php",
     data: {
       id: editID,
       userName: editUsername,
@@ -251,7 +251,7 @@ function loadUserTable(afterDelete){
     //We recover by a PHP the users from the database
     $.ajax({
         type: "POST",   
-        url: "userTable.php",
+        url: "../../php/admin/userTable.php",
         data: {
         },
         success: function( result ) {
@@ -284,18 +284,8 @@ function loadUserTable(afterDelete){
 $(document).ready(function() {
     $(function(){
         //NavBar 
-        $( "#navBarUbication" ).load( "../../templates/navBar.html", function() {
-            //We have to change the attr of the navBar
-            document.getElementById("homeNavBar").setAttribute("href", "../../index.php");
-            document.getElementById("LogInNavBar").setAttribute("href", "../Login.php");
-            document.getElementById("LogOutNavBar").setAttribute("href", "../LogOut.php");
-
-            document.getElementById("UserManagementNavBar").hidden = false;
-            document.getElementById("LogInNavBar").hidden = true; //User is already logged in if is seeing the page
-            document.getElementById("LogOutNavBar").hidden = false;
-
-            document.getElementById("homeNavBar").className = "";
-            document.getElementById("UserManagementNavBar").className = "active";
+        $( "#navBarUbication" ).load( "/php/NavBar.php", function() {
+            //
           });
       });
       

@@ -1,6 +1,5 @@
 html{
-    background: linear-gradient(90deg, #7743BB 0%, #3A97B4 100%);
-    background-image: url("../img/GOGOGO Manga y comics store.jpg"); /* needed a background img without the bussiness logo */
+    background-image: url("/img/GOGOGO Manga y comics store.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -10,33 +9,36 @@ html{
 body { 
     position: relative;
     top: 25vh;
-    left: 26vw;
-    right: 26vw;
+    left: 22vw;
+    right: 22vw;
     color: #212F3D;
     text-align: center;
-    outline: thick double #4C90BE;
-    width: 48vw;
+    outline: 9px double #4C90BE;
+    width: 56vw;
+    padding-top: 1vh;
+    border-radius: 8px;
     background-color: #F5EEF8;
-    box-shadow: 20px 25px 8px rgba(0, 0, 0, 0.7);
-
+    box-shadow: 0px 0px 40px rgba(0,0,0,1);
+    font-size:calc(1.2em + .5vmin);
 }
 
-input, body, .btn-primary {
-    font-size: 3vmin
+input, .btn-primary {
+    font-size:calc(0.8em + .5vmin);
 }
 
 h1 {
-    font-size: 8.5vmin;
+    font-size:calc(2.3em + 1vmin) ;
 }
 
 .row{
-    margin-top: 1vh;
+    margin-top: 1.2vh;
 }
 
 .btn-primary {
     margin-top: 1.5vh;
     background-color: #5A348C;
     border-color: #47296D;
+    
 }
 
 .btn-primary:hover {
@@ -48,12 +50,6 @@ h1 {
     margin: 1vw;
 }
 
-#UserName {
-    width: 28vw;
-    height: 5vh;
-}
-
-#UserPass {
-    width: 28vw;
-    height: 5vh;
+#UserName, #UserPass {
+    width: 30vw;
 }
