@@ -86,7 +86,7 @@ function showNewUserTable(){
 
   //Form
   document.getElementById("singleUserForm").setAttribute("onSubmit","submitNewUserAction(event)");
-  $("#singleUserText").text("");
+  $("#loadStatus").text("");
 }
 
 function showUserList(){
@@ -104,7 +104,7 @@ function submitNewUserAction(event){
 function addNewUser(){
   $( "#singleUserSubmit" ).prop( 'disabled', true );
   $( "#singleUserGoBack" ).prop( 'disabled', true );
-  $("#singleUserText").text("Creando usuario..");
+  $("#loadStatus").text("Creando usuario..");
   //Ajax
   var newUserName = $("#newUsernameInput").val();
   var newPassword = $("#newPasswordInput").val();
@@ -123,16 +123,16 @@ function addNewUser(){
     },
     success: function( result ) {
       if(result.includes("User inserted")){
-        $("#singleUserText").text("Usuario creado correctamente");
+        $("#loadStatus").text("Usuario creado correctamente");
         $( "#singleUserSubmit" ).prop( 'disabled', false );
         $( "#singleUserGoBack" ).prop( 'disabled', false );
       }else{
         if(result.includes("Duplicated entry")){
-          $("#singleUserText").text("Datos duplicados con otro usuario");
+          $("#loadStatus").text("Datos duplicados con otro usuario");
           $( "#singleUserSubmit" ).prop( 'disabled', false );
           $( "#singleUserGoBack" ).prop( 'disabled', false );
         }else{
-          $("#singleUserText").text("Hubo un problema en la acción");
+          $("#loadStatus").text("Hubo un problema en la acción");
           $( "#singleUserSubmit" ).prop( 'disabled', false );
           $( "#singleUserGoBack" ).prop( 'disabled', false );        
         }
@@ -173,7 +173,7 @@ function editUser(event){
   event.preventDefault();
   $( "#singleUserSubmit" ).prop( 'disabled', true );
   $( "#singleUserGoBack" ).prop( 'disabled', true );
-  $("#singleUserText").text("Guardando cambios..");
+  $("#loadStatus").text("Guardando cambios..");
   var editID = document.getElementById("singleUserSubmit").value;
   var editUsername = document.getElementById("newUsernameInput").value;
   var editName = document.getElementById("newNameInput").value;
@@ -192,16 +192,16 @@ function editUser(event){
     },
     success: function( result ) {
       if(result.includes("User updated")){
-        $("#singleUserText").text("Usuario editado correctamente");
+        $("#loadStatus").text("Usuario editado correctamente");
         $( "#singleUserSubmit" ).prop( 'disabled', false );
         $( "#singleUserGoBack" ).prop( 'disabled', false );
       }else{
         if(result.includes("Duplicated entry")){
-          $("#singleUserText").text("Datos duplicados con otro usuario");
+          $("#loadStatus").text("Datos duplicados con otro usuario");
           $( "#singleUserSubmit" ).prop( 'disabled', false );
           $( "#singleUserGoBack" ).prop( 'disabled', false );
         }else{
-          $("#singleUserText").text("Hubo un problema en la acción");
+          $("#loadStatus").text("Hubo un problema en la acción");
           $( "#singleUserSubmit" ).prop( 'disabled', false );
           $( "#singleUserGoBack" ).prop( 'disabled', false );
         }
@@ -240,7 +240,7 @@ function setEditUserTable(){
 
   //Form
   document.getElementById("singleUserForm").setAttribute("onSubmit","editUser(event)");
-  $("#singleUserText").text("");
+  $("#loadStatus").text("");
 }
 
 function emptyUserTable(){
