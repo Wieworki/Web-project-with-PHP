@@ -28,6 +28,7 @@ function addRow(tableid,textarray){
 }
 
 function addOptionsButtons(tableid,buttonValue){
+
   var auxTable = document.getElementById(tableid);
   var buttonCell = auxTable.rows[auxTable.rows.length-1].insertCell();            //New cell
   buttonCell.style.width = "20vw";
@@ -47,6 +48,7 @@ function addOptionsButtons(tableid,buttonValue){
   buttonDelete.value = buttonValue;                                        
   buttonDelete.style.margin = "0.5vh 1vw 0.5vh 1vw";
   buttonCell.appendChild(buttonDelete);
+
 }
 
 function addNewUserRow(){
