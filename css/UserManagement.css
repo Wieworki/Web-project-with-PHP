@@ -1,6 +1,6 @@
 
 main {
-    padding: 150px;
+    padding: 110px;
     min-height: 100vh;
     background-image: url("/img/3068.jpg");
     background-attachment: fixed;
@@ -52,4 +52,18 @@ button {
 
 #newUsernameInput, #newPasswordInput, #newNameInput, #newLastNameInput, #newEmailInput {
     width: 13vw;
+}
+
+::-webkit-scrollbar {
+  background-color: #D6CBDA;
+  border-radius: 1px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: black;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #603896;
+  border-radius: 1px;
 }
