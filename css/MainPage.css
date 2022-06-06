@@ -30,7 +30,8 @@ html{
 }
 
 .table th{
-    padding: 12px 15px;    
+    padding: 12px 15px;
+    text-align: center;    
 }
 .table td {
     padding: 12px 15px;
