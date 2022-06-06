@@ -1,7 +1,6 @@
 html{
     background: rgb(119,67,187);
     background: linear-gradient(90deg, rgba(119,67,187,1) 0%, rgba(58,151,180,1) 100%);
-    padding: 8vh;
 }
 
 .MainTitle{
@@ -31,7 +30,8 @@ html{
 }
 
 .table th{
-    padding: 12px 15px;    
+    padding: 12px 15px;
+    text-align: center;    
 }
 .table td {
     padding: 12px 15px;

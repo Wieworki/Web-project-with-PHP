@@ -5,6 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <script type="text/javascript" src="/js/Catalog.js"></script>
         <script type="text/javascript" src="/js/MainPage.js"></script>
         <link rel="stylesheet" type="text/css" href="../css/NavBar.css">
         <link rel="stylesheet" type="text/css" href="../css/MainPage.css">
@@ -22,23 +23,28 @@
             <table id="catalogTable" class="table">
                 <thead>
                     <tr>
-                        <th>
-                            Nombre
-                        </th>
-                        <th>
-                            Descripcion
-                        </th>
-                        <th>
-                            Precio
-                        </th>
-                        <th>
-                            Imagen
-                        </th>
+                        <th>Nombre</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                        <th>Imagen</th>
                     </tr>
                 </thead>
                 <tbody>
-                    
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
+                    <tr></tr>
                 </tbody>
+                <tfoot>
+                    <tr>
+                      <th colspan="4">
+                        <button id="previousPageButton" onclick="previousPage()">Anterior</button>
+                        <span id="pageNumber"></span>    
+                        <button id="nextPageButton" onclick="nextPage()">Siguiente</button>
+                      </th>
+                    </tr>
+                  </tfoot>
             </table>
         </div>
     </body>
