@@ -100,11 +100,11 @@ function emptyTableData(tableId){
 }
 
 function nextPage(){
-  currentCatalog.getNextPage();
+  currentCatalog.setNextPage();
   loadCatalogData(currentCatalog);
 }
 
 function previousPage(){
-  currentCatalog.getPreviousPage();
+  currentCatalog.setPreviousPage();
   loadCatalogData(currentCatalog);
 }
