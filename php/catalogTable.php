@@ -1,7 +1,7 @@
 <?php
     if (isset($_POST['request'])) {
         include "conection/mysqli.php"; //Database conection
-        $result = prepared_select($db, "SELECT id, nombre, descripcion, precio, urlPortada FROM manga",[]);
+        $result = prepared_select($db, "SELECT id, nombre, descripcion, precio, urlPortada FROM manga ORDER BY nombre",[]);
         $catalog = array();
         if(empty($result)){
             echo("Tabla vacía");

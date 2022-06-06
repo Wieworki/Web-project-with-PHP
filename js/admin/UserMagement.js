@@ -34,14 +34,14 @@ function addOptionsButtons(tableid,buttonValue){
   buttonCell.style.textAlign = "center";
   buttonCell.style.border = '1px solid black';
 
-  var buttonEdit = content.document.createElement('button');  //New button
+  var buttonEdit = document.createElement('button');  //New button
   buttonEdit.addEventListener("click", setEditUserTable);             //On click function
   buttonEdit.innerText = "Editar";                            //Button label
   buttonEdit.value = buttonValue;                             //User id - row position
   buttonEdit.style.margin = "0.5vh 1vw 0.5vh 1vw";
   buttonCell.appendChild(buttonEdit);
 
-  var buttonDelete = content.document.createElement('button');
+  var buttonDelete = document.createElement('button');
   buttonDelete.addEventListener("click", deleteUser);
   buttonDelete.innerText = "Eliminar";
   buttonDelete.value = buttonValue;                                        
@@ -53,7 +53,7 @@ function addNewUserRow(){
   var auxTable = document.getElementById("userTable");
   var auxRow = auxTable.insertRow();                      //New row
 
-  var buttonNew = content.document.createElement('button');         //New button
+  var buttonNew = document.createElement('button');         //New button
   buttonNew.addEventListener("click", showNewUserTable);            //On click function
   buttonNew.innerText = "Nuevo usuario";                            //Button label
   buttonNew.id = "buttonNew";
