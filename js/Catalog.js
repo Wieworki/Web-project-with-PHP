@@ -28,13 +28,13 @@ function Catalog(data, dataLabels, tableRows) {
       return this.catalog.slice(this.getStartIndex(), this.getEndIndex());
     };
 
-    this.getNextPage = function () {
+    this.setNextPage = function () {
       if(this.currentPage < Math.ceil(this.catalog.length/this.maxRows)){
         this.currentPage++;
       }
     };
 
-    this.getPreviousPage = function () {
+    this.setPreviousPage = function () {
       if(this.currentPage > 1){
         this.currentPage--;
       }
