@@ -1,67 +1,95 @@
-html{
-    background: rgb(119,67,187);
-    background: linear-gradient(90deg, rgba(119,67,187,1) 0%, rgba(58,151,180,1) 100%);
+
+main {
+    padding: 125px 5vw 25px 5vw;
+    min-height: 100vh;
+    background-image: url("/img/Gogogo feed completo.jpg");
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-.MainTitle{
-    text-align:center
+#container {
+    box-shadow: 0px 0px 40px rgba(0,0,0,1);
+    background-color: rgba(0,0,0,.7);
+    outline: 9px double #4C90BE;
+    border-radius: 8px;
+    backdrop-filter: blur(4px);
+}
+
+header {
+    text-align: center;
+    margin-top: 1.5vh;
+}
+
+table{
+    border-collapse: collapse;                         /*No space between cell borders*/
+    background-color: rgba(19,141,117,.5);
+    margin-top: 1.5vh;
+}
+
+table thead th {
+    font-size: 1.4em;
+}
+
+table tbody tr {
+    font-size: 1.2em;
+}
+
+table thead th, table tfoot tr, table tbody tr {
+    color: white;
+    text-align: center; 
+    border-bottom: 2px solid #45B39D;   
+}
+
+table tbody tr:nth-of-type(even) {
+    background-color: rgba(23,165,137,.4);
+}
+
+table tbody tr.active-row {
+    font-weight: bold;
+    color: black;
+}
+
+.cellStlye, .imgCellStyle {
+    border: 2px solid #45B39D;
+    min-width: 20vw;
+    border-left: none;
+    border-right: none;
 }
 
 .imgStyle{
-    max-width:100%;
-    max-height:100%;
+    max-width:20vw;
+    max-height:57.5vh;
 }
 
-.table{
-    border-collapse: collapse;                         /*No space between cell borders*/
-    margin: 5vh auto auto auto;
-    width: 80vw;
-    font-size: 0.9em;
-    font-family: sans-serif;
-    min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);       /*Shadow around the table*/
-    background-color: #17c6a3;
+#previousPageButton, #nextPageButton {
+    background-color: #5A348C;
+    border-color: #47296D;
+    margin: 1.75vh 2.5vw;
+    font-size: 1.3em;
 }
 
-.table thead tr {
-    background-color: #009879;
-    color: #ffffff;
-    text-align: left;
+#previousPageButton:hover, #nextPageButton:hover {
+    background-color: #47296D;
+    border-color: #5A348C;
 }
 
-.table th{
-    padding: 12px 15px;    
-}
-.table td {
-    padding: 12px 15px;
-    height: 15vh;
+#pageNumber {
+    font-size: 1.4em;
 }
 
-.table tbody tr {
-    border-bottom: 1px solid #dddddd;
+::-webkit-scrollbar {
+  background-color: #D6CBDA;
+  border-radius: 1px;
 }
 
-.table tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
+::-webkit-scrollbar-track {
+  background-color: black;
 }
 
-.table tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
-}
-
-.table tbody tr.active-row {
-    font-weight: bold;
-    color: #009879;
-}
-
-.cellStlye{
-    border: 1px solid black;
-    text-align: center;
-    width: 15vw;
-}
-
-.imgCellStyle{
-    border: 1px solid black;
-    text-align: center;
-    width: 10vw;
+::-webkit-scrollbar-thumb {
+  background-color: #603896;
+  border-radius: 1px;
+  border: 1px solid #47296D;
 }

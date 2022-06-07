@@ -1,15 +1,17 @@
+let currentCatalog = "";
+
 $(document).ready(function() {
     $(function(){
         //NavBar 
-        $( "#navBarUbication" ).load( "/php/NavBar.php", function() {
+        $( "#navBarUbication" ).load( "/php/NavBar.php", function() {   //The nav bar is the same for several pages, so we load it into the html template
           });
       });
     loadCatalog();
 });
 
 function loadCatalog() {                                  
-    $("#loadStatus").text("Cargando tabla");
-    //We recover by a PHP the users from the database
+  //Ajax call to recover the product data  
+  $("#loadStatus").text("Cargando tabla");
     $.ajax({
         type: "POST",   
         url: "php/catalogTable.php",
@@ -18,49 +20,91 @@ function loadCatalog() {
         },
         success: function( result ) {
           if(result.includes("Tabla vacía")){
-            $("#loadStatus").text("Tabla sin datos");
+            $("#loadStatus").text("Tabla sin datos");        //No data recovered from the DB
           }else{
             if(result.includes("Error")){
-              $("#loadStatus").text("Error en la búsqueda");
+              $("#loadStatus").text("Error en la búsqueda");  //Error in the connection to the DB
             }else{
               $("#loadStatus").text("");
-              var catalogo = JSON.parse(result);          //Array with users username, name and lastname
-              for (let i = 0; i < catalogo.length; i++) {
-                addRow("catalogTable",[catalogo[i].nombre,catalogo[i].descripcion,catalogo[i].precio]);
-                addImage("catalogTable",catalogo[i].urlPortada);
-              }
+              catalogo = JSON.parse(result);          //Array with product name, description, price and URL for image
+              currentCatalog = new Catalog(catalogo,["nombre","descripcion","precio","urlPortada"],5);  //We set the products, and the number of rows 
+              loadCatalogData(currentCatalog);
             }
           }
         },
         error: function (result) {
-          $("#loadStatus").text("Error");
+          $("#loadStatus").text("Error");   //Error in the call to the PHP file
         }
       });    
   }
 
-  function addRow(tableid,textarray){
-    //Each new row goes into tbody
-      var auxTable = document.getElementById(tableid);
-      var tbodyRef = auxTable.getElementsByTagName('tbody')[0];
-      var auxRow = tbodyRef.insertRow();                                 //New row on tbody
-      for (let i = 0; i < textarray.length; i++) {
-        var auxCell = auxRow.insertCell();                             //New cell
-          auxCell.appendChild(document.createTextNode(textarray[i]));    //Cell text
-          auxCell.className  = "cellStlye";
-      }
-  }
+function loadCatalogData(currentCatalog){
+  emptyTableData("catalogTable");
+  loadRowData("catalogTable",currentCatalog);
+  setPageNumber(currentCatalog);
+}
 
-  function addImage(tableid,urlImage){
+function loadRowData(tableid, currentCatalog) {
+  var auxTable = document.getElementById(tableid);                  //Table element
+  var tbodyRef = auxTable.getElementsByTagName('tbody')[0];         //Tbody from table
+  var dataToLoad = currentCatalog.getCatalogPage();                 //We recover the data for the data page from the catalog object
+  for (let i = 0; i < dataToLoad.length; i++) {
+    var currentRow = tbodyRef.rows[i];
+    for (let j = 0; j < 3; j++) {                                      //The first 3 elements are text data
+      var auxCell = currentRow.insertCell();                           //New cell
+      auxCell.appendChild(document.createTextNode(dataToLoad[i][j]));  //Cell text
+      auxCell.className = "cellStlye";
+    }
+    addImageCell(currentRow,dataToLoad[i][3]);                      //The fourth element is the image url
+  }
+}
+
+  function addImageCell(row,urlImage){
     //Adds a new cell with an image for the last row of tbody
     var img = document.createElement('img');
     img.src = urlImage;
     img.alt = "Imagen";
     img.className = "imgStyle";
 
-    var auxTable = document.getElementById(tableid);
-    var tbodyRef = auxTable.getElementsByTagName('tbody')[0];
-    var auxRow = tbodyRef.rows[tbodyRef.rows.length-1];              //Last row
-    var auxCell = auxRow.insertCell();                             //New cell
-    auxCell.appendChild(img);    //Cell text
+    var auxCell = row.insertCell();           //New cell
+    auxCell.appendChild(img);                 //
     auxCell.className  = "imgCellStyle";
   }
+
+function setPageNumber(catalog){
+  let pageNumber = catalog.getPageNumber();
+  let totalPages = catalog.getTotalPageNumber();
+  $("#pageNumber").html("Pagina nº " + pageNumber + " de " + totalPages);
+  if(pageNumber == 1){
+    $( "#previousPageButton" ).prop( "disabled", true );
+  }else{
+    $( "#previousPageButton" ).prop( "disabled", false );
+  }
+
+  if(pageNumber >= totalPages){
+    $( "#nextPageButton" ).prop( "disabled", true );
+  }else{
+    $( "#nextPageButton" ).prop( "disabled", false );
+  }
+}
+
+function emptyTableData(tableId){
+  var auxTable = document.getElementById(tableId);                  //Table element
+  var tbodyRef = auxTable.getElementsByTagName('tbody')[0];         //Tbody from table
+  for (let i = 0; i < tbodyRef.rows.length; i++) {
+    var currentRow = tbodyRef.rows[i];
+    while(currentRow.cells.length > 0){
+      currentRow.deleteCell(0);
+    }
+  }
+}
+
+function nextPage(){
+  currentCatalog.setNextPage();
+  loadCatalogData(currentCatalog);
+}
+
+function previousPage(){
+  currentCatalog.setPreviousPage();
+  loadCatalogData(currentCatalog);
+}
