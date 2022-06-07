@@ -1,6 +1,6 @@
 
 main {
-    padding: 110px;
+    padding: 125px 7.5vw 25px 7.5vw;
     min-height: 100vh;
     background-image: url("/img/3068.jpg");
     background-attachment: fixed;
@@ -23,7 +23,6 @@ main {
 }
 
 table{
-    font-family: sans-serif;
     border-collapse: collapse;                         /*No space between cell borders*/
     margin-top: 2vh;
     width: 80vw;
@@ -66,4 +65,5 @@ button {
 ::-webkit-scrollbar-thumb {
   background-color: #603896;
   border-radius: 1px;
+  border: 1px solid #47296D;
 }
