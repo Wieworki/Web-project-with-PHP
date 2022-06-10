@@ -108,3 +108,8 @@ function previousPage(){
   currentCatalog.setPreviousPage();
   loadCatalogData(currentCatalog);
 }
+
+function sortyByTitle(){
+  currentCatalog.sortyByTitle();
+  loadCatalogData(currentCatalog);
+}
