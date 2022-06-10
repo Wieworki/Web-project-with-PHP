@@ -1,6 +1,6 @@
 function Catalog(data, dataLabels, tableRows) {
     //Data is an object with all the items of the catalog
-    //Label is an array with all the properties names of the object we want to recover
+    //dataLabel is an array with all the properties names of the object we want to recover
     //Catalog is an array
     this.catalog = [];                            //Variable initialization
     for(let i = 0; i < data.length; i++){         //
@@ -11,6 +11,8 @@ function Catalog(data, dataLabels, tableRows) {
     }
     this.currentPage = 1, //Current number of page 
     this.maxRows = tableRows, //Number of rows of the table
+    this.titleOrderAsc = true; //Flag for the sort function
+    this.descOrderAsc = false; //Flag for the sort function
     //Functions
     this.getEndIndex = function () {
       if ((this.currentPage * this.maxRows) > this.catalog.length) {
@@ -47,4 +49,20 @@ function Catalog(data, dataLabels, tableRows) {
     this.getTotalPageNumber = function () {
       return Math.ceil(this.catalog.length/this.maxRows);
     };   
+
+    this.sortyByTitle = function(){
+      let auxSort = "";
+      if(this.titleOrderAsc){
+        auxSort = function(a,b){
+          return a[0][0] < b[0][0];   //The first element of the array is the product title
+        };
+        this.titleOrderAsc = false;
+      }else{
+        auxSort = function(a,b){
+          return a[0][0] > b[0][0];
+        };
+        this.titleOrderAsc = true;
+      }
+      this.catalog = this.catalog.sort(auxSort);
+    };
 }
