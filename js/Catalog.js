@@ -45,7 +45,7 @@ function Catalog(data, dataLabels, tableRows) {
   this.getPageNumber = function () {
     return this.currentPage;
   };
-
+  
   this.getTotalPageNumber = function () {
     return Math.ceil(this.catalog.length/this.maxRows);
   };   
