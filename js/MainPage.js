@@ -6,8 +6,31 @@ $(document).ready(function() {
         $( "#navBarUbication" ).load( "/php/NavBar.php", function() {   //The nav bar is the same for several pages, so we load it into the html template
           });
       });
+
     loadCatalog();
 });
+
+function loadSearchFunction(){
+  var availableTags = currentCatalog.getCatalogNames();
+  $( "#tags" ).autocomplete({
+    source: availableTags
+  });
+
+  //We resize the dropdown list so it matchs the width of the autocomplete input
+  jQuery.ui.autocomplete.prototype._resizeMenu = function () {
+    var ul = this.menu.element;
+    ul.outerWidth(this.element.outerWidth());
+  }
+}
+
+function searchTitleOnCatalog(){
+  let searchValue = $( "#tags" ).val();
+  if(searchValue == ""){
+    clearFilter();
+  }else{
+    filterByName(searchValue);
+  }
+}
 
 function loadCatalog() {                                  
   //Ajax call to recover the product data  
@@ -42,6 +65,13 @@ function loadCatalogData(currentCatalog){
   emptyTableData("catalogTable");
   loadRowData("catalogTable",currentCatalog);
   setPageNumber(currentCatalog);
+  afterLoadData();
+}
+
+function afterLoadData(){
+  //$(window).scrollTop(0);
+  $('html, body').animate({ scrollTop: 0 }, 'slow');
+  loadSearchFunction();
 }
 
 function loadRowData(tableid, currentCatalog) {
@@ -112,4 +142,14 @@ function previousPage(){
 function sortyByTitle(){
   currentCatalog.sortyByTitle();
   loadCatalogData(currentCatalog);
+}
+
+function filterByName(name){
+  currentCatalog.filterTitle(name);
+  loadCatalogData(currentCatalog);  
+}
+
+function clearFilter(){
+  currentCatalog.removeFilter();
+  loadCatalogData(currentCatalog); 
 }
