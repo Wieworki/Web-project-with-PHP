@@ -3,6 +3,7 @@ function Catalog(data, dataLabels, tableRows) {
   //dataLabel is an array with all the properties names of the object we want to recover
   //Catalog is an array
   this.catalog = [];                            //Variable initialization
+  this.catalogFiltered = [];
   for(let i = 0; i < data.length; i++){         //
     this.catalog.push([]);                      //
     for(let j = 0; j < dataLabels.length; j++){ 
@@ -12,10 +13,31 @@ function Catalog(data, dataLabels, tableRows) {
   this.currentPage = 1, //Current number of page 
   this.maxRows = tableRows, //Number of rows of the table
   this.titleOrderAsc = true; //Flag for the sort function
+  this.filterOn = false;    //Flag for filter
+
   //Functions
+
+  this.filterTitle = function(name) {
+    this.filterOn = true;             //Now we return the filtered table only
+    this.catalogFiltered = this.catalog.filter(element => element[0].includes(name));
+    this.currentPage = 1;
+  },
+
+  this.removeFilter = function() {
+    this.filterOn = false;             //Now we return the filtered table only
+    this.currentPage = 1;
+  },
+
   this.getEndIndex = function () {
-    if ((this.currentPage * this.maxRows) > this.catalog.length) {
-      return this.catalog.length; //The last index is the last element of the catalog
+    let auxCatalog = [];
+    if(this.filterOn){    //
+      auxCatalog = this.catalogFiltered;
+    }else{
+      auxCatalog = this.catalog;
+    }
+
+    if ((this.currentPage * this.maxRows) > auxCatalog.length) {
+      return auxCatalog.length; //The last index is the last element of the catalog
     } else {
       return this.currentPage * this.maxRows;
     }
@@ -26,10 +48,17 @@ function Catalog(data, dataLabels, tableRows) {
   },
 
   this.getCatalogPage = function () {
-    return this.catalog.slice(this.getStartIndex(), this.getEndIndex());
+    let auxCatalog = [];
+    if(this.filterOn){    //
+      auxCatalog = this.catalogFiltered;
+    }else{
+      auxCatalog = this.catalog;
+    }
+    return auxCatalog.slice(this.getStartIndex(), this.getEndIndex());
   };
 
   this.getCatalogNames = function () {
+    //This function isn't affected by the filter
     let auxNombres = [];
     for(let i = 0; i < this.catalog.length; i++){
       auxNombres.push(this.catalog[i][0]);
@@ -38,7 +67,14 @@ function Catalog(data, dataLabels, tableRows) {
   };
 
   this.setNextPage = function () {
-    if(this.currentPage < Math.ceil(this.catalog.length/this.maxRows)){
+    let auxCatalog = [];
+    if(this.filterOn){    //
+      auxCatalog = this.catalogFiltered;
+    }else{
+      auxCatalog = this.catalog;
+    }
+
+    if(this.currentPage < Math.ceil(auxCatalog.length/this.maxRows)){
       this.currentPage++;
     }
   };
@@ -54,10 +90,18 @@ function Catalog(data, dataLabels, tableRows) {
   };
 
   this.getTotalPageNumber = function () {
-    return Math.ceil(this.catalog.length/this.maxRows);
+    let auxCatalog = [];
+    if(this.filterOn){    //
+      auxCatalog = this.catalogFiltered;
+    }else{
+      auxCatalog = this.catalog;
+    }
+
+    return Math.ceil(auxCatalog.length/this.maxRows);
   };   
 
   this.sortyByTitle = function(){
+    
     let auxSort = "";
     if(this.titleOrderAsc){
       auxSort = function(a,b){
@@ -70,6 +114,11 @@ function Catalog(data, dataLabels, tableRows) {
       };
       this.titleOrderAsc = true;
     }
-    this.catalog = this.catalog.sort(auxSort);
+
+    if(this.filterOn){    //
+      this.catalogFiltered = this.catalogFiltered.sort(auxSort);
+    }else{
+      this.catalog = this.catalog.sort(auxSort);
+    }
   };
 }

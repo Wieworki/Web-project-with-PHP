@@ -25,8 +25,10 @@ function loadSearchFunction(){
 
 function searchTitleOnCatalog(){
   let searchValue = $( "#tags" ).val();
-  if(searchValue != ""){
-
+  if(searchValue == ""){
+    clearFilter();
+  }else{
+    filterByName(searchValue);
   }
 }
 
@@ -63,6 +65,12 @@ function loadCatalogData(currentCatalog){
   emptyTableData("catalogTable");
   loadRowData("catalogTable",currentCatalog);
   setPageNumber(currentCatalog);
+  afterLoadData();
+}
+
+function afterLoadData(){
+  //$(window).scrollTop(0);
+  $('html, body').animate({ scrollTop: 0 }, 'slow');
   loadSearchFunction();
 }
 
@@ -134,4 +142,14 @@ function previousPage(){
 function sortyByTitle(){
   currentCatalog.sortyByTitle();
   loadCatalogData(currentCatalog);
+}
+
+function filterByName(name){
+  currentCatalog.filterTitle(name);
+  loadCatalogData(currentCatalog);  
+}
+
+function clearFilter(){
+  currentCatalog.removeFilter();
+  loadCatalogData(currentCatalog); 
 }
