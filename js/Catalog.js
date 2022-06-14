@@ -12,7 +12,6 @@ function Catalog(data, dataLabels, tableRows) {
   this.currentPage = 1, //Current number of page 
   this.maxRows = tableRows, //Number of rows of the table
   this.titleOrderAsc = true; //Flag for the sort function
-  this.descOrderAsc = false; //Flag for the sort function
   //Functions
   this.getEndIndex = function () {
     if ((this.currentPage * this.maxRows) > this.catalog.length) {
@@ -28,6 +27,14 @@ function Catalog(data, dataLabels, tableRows) {
 
   this.getCatalogPage = function () {
     return this.catalog.slice(this.getStartIndex(), this.getEndIndex());
+  };
+
+  this.getCatalogNames = function () {
+    let auxNombres = [];
+    for(let i = 0; i < this.catalog.length; i++){
+      auxNombres.push(this.catalog[i][0]);
+    }
+    return auxNombres;
   };
 
   this.setNextPage = function () {

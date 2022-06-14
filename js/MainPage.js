@@ -6,8 +6,29 @@ $(document).ready(function() {
         $( "#navBarUbication" ).load( "/php/NavBar.php", function() {   //The nav bar is the same for several pages, so we load it into the html template
           });
       });
+
     loadCatalog();
 });
+
+function loadSearchFunction(){
+  var availableTags = currentCatalog.getCatalogNames();
+  $( "#tags" ).autocomplete({
+    source: availableTags
+  });
+
+  //We resize the dropdown list so it matchs the width of the autocomplete input
+  jQuery.ui.autocomplete.prototype._resizeMenu = function () {
+    var ul = this.menu.element;
+    ul.outerWidth(this.element.outerWidth());
+  }
+}
+
+function searchTitleOnCatalog(){
+  let searchValue = $( "#tags" ).val();
+  if(searchValue != ""){
+
+  }
+}
 
 function loadCatalog() {                                  
   //Ajax call to recover the product data  
@@ -42,6 +63,7 @@ function loadCatalogData(currentCatalog){
   emptyTableData("catalogTable");
   loadRowData("catalogTable",currentCatalog);
   setPageNumber(currentCatalog);
+  loadSearchFunction();
 }
 
 function loadRowData(tableid, currentCatalog) {

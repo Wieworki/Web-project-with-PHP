@@ -93,3 +93,29 @@ table tbody tr.active-row {
   border-radius: 1px;
   border: 1px solid #47296D;
 }
+
+/*Autocomplete*/
+
+.ui-autocomplete {
+    max-height: 40vh;
+    overflow-y: auto;
+    /* prevent horizontal scrollbar */
+    overflow-x: hidden;
+  }
+  /* IE 6 doesn't support max-height
+   * we use height instead, but this forces the menu to always be this tall
+   */
+  html .ui-autocomplete {
+    
+    background-color: inherit;;
+  }
+
+  html .ui-autocomplete .ui-menu-item .ui-corner-all {
+    background: red;
+ }
+
+ .ui-menu-item .ui-menu-item-wrapper.ui-state-active {
+    background: #071520 !important;
+    font-weight: bold !important;
+    color: #ffffff !important;
+} 
