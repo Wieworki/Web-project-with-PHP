@@ -7,38 +7,5 @@ costumers when a product doesn´t have stock available.
 
 Data base structure:
 
-User Table:
-  -Id
-  -Username (PK)
-  -Password
-  -Nombre
-  -Apellido
-  -Email
-  
-Manga:
-  -Id
-  -Nombre     (PK)
-  -IdEditorial  (FK)
-  -Descripcion
-  -UrlImagen
- 
-Volumen:
-  -Id
-  -IdManga  (FK)
-  -Numero
-  -Descripcion
-  -Precio
-  -UrlPortada
 
-GeneroManga:
-  -Id
-  -IdManga  (FK)
-  -IdGenero (FK)
-
-Genero:
-  -Id
-  -Nombre (PK)
-  
-Editorial:
-  -Id
-  -Nombre
+![EsquemaBaseDeDatos](https://user-images.githubusercontent.com/45775681/173962399-a30069f4-0f8e-4168-8852-c0427823ec2b.png)
