@@ -144,7 +144,10 @@ table tbody tr.active-row {
 html .ui-autocomplete {    
     background-color: #F5EEF8;
     border-color: #180748;
+    list-style: none;
+    text-indent: 10px;
     text-align: left;
+    padding: 0;
 }
 
 .ui-menu-item .ui-menu-item-wrapper.ui-state-active {
