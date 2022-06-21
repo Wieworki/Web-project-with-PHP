@@ -36,10 +36,9 @@
             <div class="MainWrapper">
                 
                 <div class="ui-widget">
-                    <label for="tags" style="color: white;">Buscador: </label>
-                    <input id="tags">
-                    <button id="searchButton" onclick="searchTitleOnCatalog()">Buscar</button>
-                    <button id="clearFilterButton" onclick="clearFilter()">Limpiar</button>
+                    <input id="tags" placeholder="Buscador">
+                    <button id="searchButton" class="btn btn-black" onclick="searchTitleOnCatalog()">Buscar</button>
+                    <button id="clearFilterButton" class="btn btn-black" onclick="clearFilter()">Limpiar</button>
                 </div>
 
                 <div id="catalogUbication">
@@ -66,8 +65,8 @@
                         <tfoot>
                             <tr>
                             <th colspan="4">
-                                <button id="previousPageButton" class="btn btn-primary" onclick="previousPage()">Anterior</button>
-                                <button id="nextPageButton" class="btn btn-primary" onclick="nextPage()">Siguiente</button>
+                                <button id="previousPageButton" class="btn btn-black" onclick="previousPage()">Anterior</button>
+                                <button id="nextPageButton" class="btn btn-black" onclick="nextPage()">Siguiente</button>
                                 <br><span id="pageNumber"></span>
                             </th>
                             </tr>
@@ -84,7 +83,7 @@
         </div>
 
     <footer>
-        <p id="loadStatus" style="text-align: center;"></p>
+       <p id="loadStatus" style="text-align: center;"></p>
     </footer>
 
     </main>

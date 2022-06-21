@@ -104,7 +104,7 @@ function loadRowData(tableid, currentCatalog) {
 function setPageNumber(catalog){
   let pageNumber = catalog.getPageNumber();
   let totalPages = catalog.getTotalPageNumber();
-  $("#pageNumber").html("Pagina nº " + pageNumber + " de " + totalPages);
+  $("#pageNumber").html("Página " + pageNumber + " de " + totalPages);
   if(pageNumber == 1){
     $( "#previousPageButton" ).prop( "disabled", true );
   }else{
