@@ -88,7 +88,7 @@ function Catalog(data, dataLabels, tableRows) {
   this.getPageNumber = function () {
     return this.currentPage;
   };
-
+  
   this.getTotalPageNumber = function () {
     let auxCatalog = [];
     if(this.filterOn){    //
