@@ -12,10 +12,15 @@
       border-color: #200960;
    }
 
+   .dropdown-toggle:focus {
+      background-color: #180748;
+   }
+
    .dropdown-menu {
-      background-color: #F5EEF8;;
+      background-color: #F5EEF8;
    }
 
    .dropdown-item:hover {
-      background-color: #ECE6EE;
+      background-color: #E8DEEB;
+      font-weight: bold;
    }
