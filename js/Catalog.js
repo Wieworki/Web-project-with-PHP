@@ -61,7 +61,9 @@ function Catalog(data, dataLabels, tableRows) {
     //This function isn't affected by the filter
     let auxNombres = [];
     for(let i = 0; i < this.catalog.length; i++){
-      auxNombres.push(this.catalog[i][0]);
+      if(auxNombres.indexOf(this.catalog[i][0]) == -1){   //We avoid repetition of names
+        auxNombres.push(this.catalog[i][0]);
+      }
     }
     return auxNombres;
   };
