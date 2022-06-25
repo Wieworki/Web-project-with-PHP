@@ -50,7 +50,7 @@ function loadCatalog() {
             }else{
               $("#loadStatus").text("");
               catalogo = JSON.parse(result);          //Array with product name, description, price and URL for image
-              currentCatalog = new Catalog(catalogo,["nombre","descripcion","precio","urlPortada"],5);  //We set the products, and the number of rows 
+              currentCatalog = new Catalog(catalogo,["nombre","volumen","descripcion","precio","urlPortada"],5);  //We set the products, and the number of rows 
               loadCatalogData(currentCatalog);
             }
           }
@@ -80,12 +80,12 @@ function loadRowData(tableid, currentCatalog) {
   var dataToLoad = currentCatalog.getCatalogPage();                 //We recover the data for the data page from the catalog object
   for (let i = 0; i < dataToLoad.length; i++) {
     var currentRow = tbodyRef.rows[i];
-    for (let j = 0; j < 3; j++) {                                      //The first 3 elements are text data
+    for (let j = 0; j < 4; j++) {                                      //The first 4 elements are text data
       var auxCell = currentRow.insertCell();                           //New cell
       auxCell.appendChild(document.createTextNode(dataToLoad[i][j]));  //Cell text
       auxCell.className = "cellStlye";
     }
-    addImageCell(currentRow,dataToLoad[i][3]);                      //The fourth element is the image url
+    addImageCell(currentRow,dataToLoad[i][4]);                      //The fifth element is the image url
   }
 }
 
