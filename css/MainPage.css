@@ -57,13 +57,13 @@ table tbody tr.active-row {
 
 .cellStlye, .imgCellStyle {
     border: 2px solid #45B39D;
-    min-width: 20vw;
+    min-width: 15vw;
     border-left: none;
     border-right: none;
 }
 
 .imgStyle{
-    max-width:20vw;
+    max-width:15vw;
     max-height:57.5vh;
 }
 
