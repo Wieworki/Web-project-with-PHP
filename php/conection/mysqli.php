@@ -70,6 +70,9 @@
 
     function errorHandler($errorNumber,&$errorMessage){
         switch($errorNumber){
+            case "1054":
+                $errorMessage = "unkown column";
+                break;
             case "1062":
                 $errorMessage = "duplicated entry";
                 break;
@@ -77,7 +80,7 @@
                 $errorMessage = "syntax error";
                 break;                    
             default:
-                $errorMessage = "error code: ".$e->getCode();
+                $errorMessage = "error code: ".$errorNumber;
                 break;
         }
     }
