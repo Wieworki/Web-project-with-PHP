@@ -70,6 +70,9 @@
 
     function errorHandler($errorNumber,&$errorMessage){
         switch($errorNumber){
+            case "1052":
+                $errorMessage = "error in foreign key constraint";
+                break;
             case "1054":
                 $errorMessage = "unkown column";
                 break;
