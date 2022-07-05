@@ -13,9 +13,9 @@
         <script type="text/javascript" src="/js/MainPage.js"></script>
         
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="../css/MainPage.css">
+        <link rel="stylesheet" type="text/css" href="/css/MainPage.css">
          
-         <title>GoGoGo Manga & Comic Store</title>
+        <title>GoGoGo Manga & Comic Store</title>
 
     </head>
 
@@ -27,7 +27,7 @@
 
         <header>
 
-            <img src="../img/gogogo manga y comics store - logo sin fondo.png" height="100px">
+            <img src="/img/gogogo manga y comics store - logo sin fondo.png" height="100px">
 
         </header>
 
@@ -47,7 +47,7 @@
                         
                         <thead>
                             <tr>
-                                <th onclick="sortyByTitle()" style="cursor: pointer; width: auto;">Manga/Comic</th>
+                                <th onclick="sortyByTitle()" style="cursor: pointer; width: auto;">Título</th>
                                 <th>Volumen</th>
                                 <th>Descripcion</th>
                                 <th>Precio</th>
@@ -65,11 +65,11 @@
 
                         <tfoot>
                             <tr>
-                            <th colspan="4">
-                                <button id="previousPageButton" class="btn btn-black" onclick="previousPage()">Anterior</button>
-                                <button id="nextPageButton" class="btn btn-black" onclick="nextPage()">Siguiente</button>
-                                <br><span id="pageNumber"></span>
-                            </th>
+                                <th colspan="5">
+                                    <button id="previousPageButton" class="btn btn-black" onclick="previousPage()">Anterior</button>
+                                    <button id="nextPageButton" class="btn btn-black" onclick="nextPage()">Siguiente</button>
+                                    <br><span id="pageNumber"></span>
+                                </th>
                             </tr>
                         </tfoot>
 
@@ -84,7 +84,7 @@
         </div>
 
     <footer>
-       <p id="loadStatus" style="text-align: center;"></p>
+       <p id="loadStatus"></p>
     </footer>
 
     </main>
