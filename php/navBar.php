@@ -40,8 +40,9 @@
                    <?php
                         if($logged){
                             //User management and log out options
-                            echo("<li><a class=\"dropdown-item\" href=\"/index.php\">Catalogo de productos</a></li>");
-                            echo("<li><a class=\"dropdown-item\" href=\"/php/admin/UserManagement.php\">Administrar usuarios</a></li>");
+                            echo("<li><a class=\"dropdown-item\" href=\"/index.php\">Catalogo de Productos</a></li>");
+                            echo("<li><a class=\"dropdown-item\" href=\"/php/admin/UserManagement.php\">Administrar Usuarios</a></li>");
+                            echo("<li><a class=\"dropdown-item\" href=\"/templates/admin/CatalogManagement.html\">Administrar Títulos</a></li>");
                             echo("<li><a class=\"dropdown-item\" href=\"/php/LogOut.php\">Cerrar Sesión</a></li>");
                         }else{
                             //Only log in options
