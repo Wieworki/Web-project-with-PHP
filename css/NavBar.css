@@ -2,25 +2,37 @@
       background: linear-gradient(90deg, #180748 0%, #603896 100%);
    }
 
-   .dropdown-toggle {
+   #dropdownMenuButton1 {
       background-color: #200960;
       border-color: #180748; 
    }
 
-   .dropdown-toggle:hover {
+   #dropdownMenuButton1:hover {
       background-color: #180748;
       border-color: #200960;
    }
 
-   .dropdown-toggle:focus {
+   #dropdownMenuButton1:focus {
       background-color: #180748;
+   }
+
+   #dropdownMenuButton1:target {
+      background-color: #200960;
    }
 
    .dropdown-menu {
       background-color: #F5EEF8;
    }
 
+   .dropwdon-item {
+      text-align: center;
+   }
+
    .dropdown-item:hover {
       background-color: #E8DEEB;
       font-weight: bold;
+   }
+
+   .dropdown-item:focus {
+      color: #603896;
    }
