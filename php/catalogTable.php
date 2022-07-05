@@ -5,19 +5,19 @@
         FROM manga 
         INNER JOIN volumen ON volumen.id_manga = manga.id
         ORDER BY manga.nombre",[]);
-        $catalog = array();
-        if(empty($result)){
-            echo("Tabla vacía");
-        }else{
-            if($errorMessage == ""){                    //No errors
-                while ($manga = $result->fetch_assoc()) {
-                    $catalog[] = $manga;
-                }
-                echo json_encode($catalog);            
-            }else{
-                echo("Error");
+        if($errorMessage == ""){                    //No errors
+            $catalog = array();
+            while ($manga = $result->fetch_assoc()) {
+                $catalog[] = $manga;
             }
-        }
+            if(empty($catalog)){
+                echo("Tabla vacía");
+            }else{
+                echo json_encode($catalog);            
+            }
+        }else{
+            echo("Error");
+        }        
     }else{
         echo("Acceso inválido");
     }
