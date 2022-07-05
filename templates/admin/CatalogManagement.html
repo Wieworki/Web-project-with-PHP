@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    	<script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    	<script type="text/javascript" src="/js/admin/CatalogManagement.js"></script>
+        
+    	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    	<link rel="stylesheet" type="text/css" href="/css/CatalogManagement.css">
+
+		<title>ABM Mangas/Comics</title>
+
+	</head>
+
+	<main>
+
+		<div id="navBarUbication"></div>
+
+		<div  id="container" style="overflow: auto">
+			
+		<header> 
+
+			<h1 id="mainTitle">LISTA DE TITULOS</h1>
+
+		</header>
+
+		<body>
+
+			<table class="table table-striped-columns">
+
+                <thead>
+                    <tr>
+                        <th>Título</th>
+                        <th>Volumen</th>
+                        <th>Descripcion</th>
+                        <th>Precio</th>
+                        <th>Portada</th>
+                        <th>Editorial<th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="text" name="" id="titleInput" required>
+                        </td>
+
+                        <td>
+                            <input type="text" name="" id="volumeInput" required>
+                        </td>
+
+                        <td>
+                            <textarea id="descriptionInput" required></textarea>
+                        </td>
+
+                        <td>
+                            <input type="text" name="" id="priceInput" required>
+                        </td>
+
+                        <td>
+                            <input type="url" placeholder="URL de la imagen" name="" id="portraitInput" required>
+                        </td>
+
+                        <td class="dropdown-center">
+
+                        	<button class="dropdown-toggle" type="button"  data-bs-toggle="dropdown" aria-expanded="false">
+                        		Opciones
+                    		</button>
+
+                    		<ul class="dropdown-menu">
+                    			<li><a class="dropdown-item" href="#">Ovni</a></li>
+   								<li><a class="dropdown-item" href="#">Panini</a></li>
+    							<li><a class="dropdown-item" href="#">Otro</a></li>
+                    	    </ul>
+
+                		</td>
+                    </tr>
+                </tbody>
+
+                <tfoot>
+                    <tr>
+                        <td>
+                                        
+                        </td>
+                    </tr>
+                </tfoot>
+
+            </table>
+
+		</body>
+
+		</div>
+
+	</main>
+
+</html>
