@@ -1,12 +1,15 @@
 
-main {
-    padding: 125px 5vw 25px 5vw;
-    min-height: 100vh;
+body {
     background-image: url("/img/Gogogo feed completo.jpg");
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+}
+
+main {
+    padding: 125px 5vw 25px 5vw;
+    min-height: 100vh;
 }
 
 #container {
@@ -115,6 +118,15 @@ table tbody tr.active-row {
     color: #F5EEF8;
 }
 
+#loadStatus {
+    text-align: center;
+    font-size: 1.2em;
+    margin-top: 2vh;
+    color: white;
+}
+
+
+
 ::-webkit-scrollbar {
   background-color: #D6CBDA;
   border-radius: 1px;
@@ -154,10 +166,10 @@ html .ui-autocomplete {
     background-color: #E8DEEB !important;
     font-weight: bold !important;
     color: #212F3D !important;
-} 
+}
 
     /* there is a div with the next class name appearing in the bottom of the page when the Autocomplete function is "activated" 
-    so I put this hidden propiety provisional until we found the problem */
+    so I apply this hidden propiety for it to not shows in screen */
 
 .ui-helper-hidden-accessible {
     visibility: hidden;         
